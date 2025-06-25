@@ -1,0 +1,2 @@
+- el arte ascii
+-divison de archivos como funciones y demas en otros archivos y mandarlos a llamar

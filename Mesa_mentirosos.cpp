@@ -60,6 +60,17 @@ void mostrarCartaASCII(const string& carta) {
     }
 }
 
+//ahora realizamos una funcion para poder hacer el barajeo
+void barajarMazo(string m[], int n) {
+    for (int i = 0; i < n; i++) { //esto a travez de un bucle
+        int j = rand() % n;
+        string temp = m[i];
+        m[i] = m[j];
+        m[j] = temp;
+    }
+}
+
+
 
 
 int main (){
