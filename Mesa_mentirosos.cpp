@@ -22,3 +22,22 @@ que cumplir un castigo o reto.*/
 #include <ctime>
 using namespace std;
 
+//determinamos unas constantes, para tener el numeros de cartas 
+const int MAX_JUGADORES = 4;
+const int CARTAS_POR_JUGADOR = 5;
+const int TOTAL_CARTAS = 16;
+
+//desarrollo de tarjetas
+string mazo[TOTAL_CARTAS] = {
+    "Rey", "Rey", "Rey", "Rey", "Rey",
+    "Reina", "Reina", "Reina", "Reina", "Reina",
+    "As", "As", "As", "As", "As",
+    "Jocker"
+};
+
+int main (){
+
+
+    return 0;
+}
+
