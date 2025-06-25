@@ -35,6 +35,33 @@ string mazo[TOTAL_CARTAS] = {
     "Jocker"
 };
 
+//desarrollamos el arte ASCII de las cartas.
+void mostrarCartaASCII(const string& carta) {
+    if (carta == "Rey") {
+        cout << "┌─────┐\n";
+        cout << "│  K  │\n";
+        cout << "│ ♚   │\n";
+        cout << "└─────┘\n";
+    } else if (carta == "Reina") {
+        cout << "┌─────┐\n";
+        cout << "│  Q  │\n";
+        cout << "│ ♛   │\n";
+        cout << "└─────┘\n";
+    } else if (carta == "As") {
+        cout << "┌─────┐\n";
+        cout << "│  A  │\n";
+        cout << "│ ♠   │\n";
+        cout << "└─────┘\n";
+    } else if (carta == "Jocker") {
+        cout << "┌─────┐\n";
+        cout << "│ JKR │\n";
+        cout << "│ ★   │\n";
+        cout << "└─────┘\n";
+    }
+}
+
+
+
 int main (){
 
 
