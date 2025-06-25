@@ -90,11 +90,52 @@ void mostrarMano(string mano[], int tam) {
     cout << endl;
 }
 
+//hacemor una funcion para comprobar las cartas que tendra cada jugador
+int contarCarta(string mano[], int tam, string carta) {
+    int cont = 0;
+    for (int i = 0; i < tam; i++) {
+        if (mano[i] == carta) cont++;
+    }
+    return cont;
+}
 
+//cuando un jugador tire una carta, hacemos una funcion para que este elimine dicha carta
+void eliminarCartas(string mano[], int tam, string carta, int cantidad) {
+    for (int i = 0; i < tam && cantidad > 0; i++) {
+        if (mano[i] == carta) {
+            mano[i] = "";
+            cantidad--;
+        }
+    }
+}
 
-
+//empezamos a trabajar en el main
 int main (){
+      srand(time(0));
+    int numJugadores;
+    string nombres[MAX_JUGADORES];
+    string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR];
 
+    // damos la bienvenida a los usuarios , con codigo ascii para que sea bonito tambien
+    cout << "╔══════════════════════════════════════════════════════╗\n";
+    cout << "║        Bienvenido a la mesa de los mentirosos!      ║\n";
+    cout << "╚══════════════════════════════════════════════════════╝\n";
+    cout << "El mazo de cartas contiene: Rey, Reina, As y Jocker.\n";
+    cout << "Cada jugador recibira 5 cartas al inicio del juego.\n";
+    cout << "El juego comenzara con un jugador reclamando una carta, los demas jugadores podran ingresar que cartas de su mano quieren tirar.\n";
+    cout << "Si el jugador que reclama tiene 3 cartas de la que reclamo, gana, si no, pierde.\n";
+    cout << "El juego continuara hasta que un jugador se quede sin cartas o nunca mienta.\n";
+    cout << "Presione Enter para comenzar el juego..." << endl;
+    cin.ignore();
+
+    //los jugadores no pueden ser menos de 2 por lo que preguntamos y de una comprobamos
+    // Número de jugadores
+    cout << "Cuantos jugadores participaran en el juego? (2-4 jugadores): ";
+    cin >> numJugadores;
+    while (numJugadores < 2 || numJugadores > 4) {
+        cout << "Numero de jugadores invalido. Por favor ingrese un numero entre 2 y 4: ";
+        cin >> numJugadores;
+    }
 
     return 0;
 }
