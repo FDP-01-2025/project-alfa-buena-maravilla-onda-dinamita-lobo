@@ -70,6 +70,26 @@ void barajarMazo(string m[], int n) {
     }
 }
 
+//repartimos en una funcion las cartas a los jugadores 
+void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[]) {
+    int pos = 0;
+    for (int i = 0; i < numJugadores; i++) {
+        for (int j = 0; j < CARTAS_POR_JUGADOR; j++) {
+            manos[i][j] = m[pos++];
+        }
+    }
+}
+
+//mostramos la mano de los jugadores
+void mostrarMano(string mano[], int tam) {
+    for (int i = 0; i < tam; i++) {
+        if (mano[i] != "") {
+            mostrarCartaASCII(mano[i]);
+        }
+    }
+    cout << endl;
+}
+
 
 
 

@@ -1,2 +1,4 @@
 - el arte ascii
+-actualizar en una funcion el tamaño de la terminal y su orden
+-si se puede, buscar como hacer el el mazo se vea en horizontal y vertical
 -divison de archivos como funciones y demas en otros archivos y mandarlos a llamar
