@@ -113,6 +113,8 @@ void eliminarCartas(string mano[], int tam, string carta, int cantidad) {
 int main (){
       srand(time(0));
     int numJugadores;
+    bool juegoActivo = true;
+    int turno = 0;
     string nombres[MAX_JUGADORES];
     string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR];
 
@@ -136,6 +138,25 @@ int main (){
         cout << "Numero de jugadores invalido. Por favor ingrese un numero entre 2 y 4: ";
         cin >> numJugadores;
     }
+
+    //pedimos los nombres de los jugadores para referirnos a ellos 
+    cout << "Ingresa los nombres de los jugadores:" << endl;
+    for (int i = 0; i < numJugadores; i++) {
+        cout << "Jugador " << (i + 1) << ": ";
+        cin >> nombres[i];
+    }
+
+    //llamamos las funciones para abrajear y repartir
+    // Barajar y repartir cartas
+    barajarMazo(mazo, TOTAL_CARTAS);
+    repartirCartas(manos, numJugadores, mazo);
+
+    //iniciamos el juego
+    while (juegoActivo) {
+        cout << "\n═══════════════════════════════════════════════════════\n";
+        cout << "Turno de " << nombres[turno] << endl;
+        cout << "Tus cartas: " << endl;
+        mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
 
     return 0;
 }
