@@ -158,6 +158,21 @@ int main (){
         cout << "Tus cartas: " << endl;
         mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
 
+        // Reclamar carta
+        string reclamo;
+        cout << "¿Qué carta reclamas (Rey, Reina, As, Jocker)? ";
+        cin >> reclamo;
+
+        // Los demás jugadores tiran cartas (pueden mentir)
+        for (int j = 0; j < numJugadores; j++) {
+            if (j == turno) continue;
+            cout << nombres[j] << ", estas son tus cartas:" << endl;
+            mostrarMano(manos[j], CARTAS_POR_JUGADOR);
+            cout << nombres[j] << ", ¿cuántas cartas quieres tirar como '" << reclamo << "'? ";
+            int cantidad;
+            cin >> cantidad;
+            eliminarCartas(manos[j], CARTAS_POR_JUGADOR, reclamo, cantidad);
+        }
     return 0;
 }
 
