@@ -201,8 +201,14 @@ int main (){
                 cout<<"Seleccione un jugador valido"<<endl;
                 cin>>jugador_que_delata;
             }
-            system("cls");//cls}
+            system("cls");//cls
             
+            //Jugadores a delatar
+            cout<<"A que jugador deseas delatar?"<<endl;
+            for(int i=0; i<numJugadores; i++){
+                cout<<i+1<<". "<<nombres[i]<<endl;
+            }
+            cin>>jugador_delatado;
             }
     return 0;
 }
