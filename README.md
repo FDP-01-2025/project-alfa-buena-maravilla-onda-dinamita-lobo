@@ -1,19 +1,23 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/mi1WNrHU)
-# Proyecto de C++ - [Nombre del Juego]
+# The Table of Liars
 
-## Descripción del Proyecto
-
-Breve descripción del juego, su propósito, cómo se juega y cualquier otro detalle importante que describa la idea general del proyecto.
-
-**Por ejemplo:**
-Este proyecto consiste en un juego de aventuras donde el jugador debe explorar un mundo virtual, recoger objetos, resolver acertijos y enfrentar enemigos. El juego utiliza estructuras de control como `if`, `switch`, y bucles `while` y `for` para generar interacciones dinámicas.
-
-## Equipo
-
-- **Nombre del equipo:** [Nombre del equipo]
-
-### Integrantes del equipo
-
+## Description
+"The Liars' Table." This game can be played by 2 to 4 players, and each player will be dealt 5 cards.
+The deck may include Kings, Queens, Aces, and one single Joker, all shuffled and distributed randomly. The table (or a player, following a turn order) will 
+call for a specific card (King, Queen, Ace, or Joker). All other players must then play 1, 2, or 3 cards face down (but not 4 or 5).
+Once the cards are placed, players can choose to believe the one who played the cards, or accuse them of being a LIAR.
+If the player who played the cards does have at least one of the requested cards, the accuser is the liar and loses the round.
+If the player does not have the requested cards and played anyway, they are the liar and lose the round.
+After the round:
+All cards are returned to the deck, shuffled, and re-dealt.
+The losing player does not participate in the next round and must complete a punishment or challenge.
+The game will be implemented in C++, using:
+-Functions
+-Arrays
+-Control structures like if, else, while, do-while, for, and switch.
+## **Developer team name:**
+- project alfa buena maravilla onda dinamita lobo
+### **Team members' names:**
 1. **Nombre completo:** [Nombre del estudiante 1]  
    **Carnet:** [Carnet del estudiante 1]
 
