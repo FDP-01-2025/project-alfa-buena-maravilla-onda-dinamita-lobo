@@ -173,6 +173,22 @@ int main (){
             cin >> cantidad;
             eliminarCartas(manos[j], CARTAS_POR_JUGADOR, reclamo, cantidad);
         }
+        //Espacio para probar la funcion de delatar un jugador mentiroso
+        /*Las variables hay que moverlas, se encuentran acá como una simple prueba y
+        comodidad a la hora de codificar.
+        La funcion de system("cls") es para limpiar la consola.*/
+        char respuesta;
+        int jugador_que_delata;
+        int jugador_delatado;
+
+        cout<<"Alguien quiere acusar? (S/N)"<<endl;
+        cin>>respuesta;
+        
+        while (respuesta != 's' && respuesta != 'S' && respuesta != 'n' && respuesta != 'N') {
+            cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
+            cin >> respuesta;
+            system("cls");//cls
+    }
     return 0;
 }
 
