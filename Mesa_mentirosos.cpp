@@ -188,7 +188,22 @@ int main (){
             cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
             cin >> respuesta;
             system("cls");//cls
-    }
+        }
+        if(respuesta == 's' || respuesta == 'S'){
+            cout<<"Seleccione su nombre de jugador"<<endl;
+            for(int i=0; i<numJugadores; i++){
+                cout<<i+1<<". "<<nombres[i]<<endl;
+            }
+            cin>>jugador_que_delata;
+            system("cls");//cls
+            while(jugador_que_delata<1 || jugador_que_delata>numJugadores){
+                system("cls");//cls
+                cout<<"Seleccione un jugador valido"<<endl;
+                cin>>jugador_que_delata;
+            }
+            system("cls");//cls}
+            
+            }
     return 0;
 }
 
