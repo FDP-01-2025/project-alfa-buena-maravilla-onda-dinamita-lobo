@@ -18,17 +18,18 @@ The game will be implemented in C++, using:
 ## **Developer team name:**
 - project alfa buena maravilla onda dinamita lobo
 ### **Team members' names:**
-1. **Nombre completo:** [Nombre del estudiante 1]  
-   **Carnet:** [Carnet del estudiante 1]
+1. **Name** Ricardo Ernesto Iglesias Flores 
+   **Student id:** 00000725
 
-2. **Nombre completo:** [Nombre del estudiante 2]  
-   **Carnet:** [Carnet del estudiante 2]
+2. **Name** Gael Alexander Martinez Alas 
+   **Student id:** 00033625
 
-3. **Nombre completo:** [Nombre del estudiante 3]  
-   **Carnet:** [Carnet del estudiante 3]
-
-(Agregar más integrantes si es necesario)
-
+3. **Name** Daniel Alejandro Lopez Ruano 
+   **Student id:** 00156625
+   
+4. **Name** Roque Ignacio Flores Jovel 
+   **Student id:** 00017525
+   
 ## Instrucciones de Ejecución
 
 1. Clona este repositorio en tu máquina local:
