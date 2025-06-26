@@ -173,6 +173,7 @@ int main (){
             cin >> cantidad;
             eliminarCartas(manos[j], CARTAS_POR_JUGADOR, reclamo, cantidad);
         }
+        }
         //Espacio para probar la funcion de delatar un jugador mentiroso
         /*Las variables hay que moverlas, se encuentran acá como una simple prueba y
         comodidad a la hora de codificar.
@@ -202,14 +203,30 @@ int main (){
                 cin>>jugador_que_delata;
             }
             system("cls");//cls
-            
+
             //Jugadores a delatar
             cout<<"A que jugador deseas delatar?"<<endl;
             for(int i=0; i<numJugadores; i++){
                 cout<<i+1<<". "<<nombres[i]<<endl;
             }
             cin>>jugador_delatado;
+
+             while(jugador_delatado<1 || jugador_delatado>numJugadores || jugador_delatado==jugador_que_delata){
+                if(jugador_delatado==jugador_que_delata){
+                    cout<<"No te puedes delatar a ti mismo"<<endl;
+                }
+                cout<<"Seleccione un jugador valido"<<endl;
+                for(int i=0; i<numJugadores; i++){
+                cout<<i+1<<". "<<nombres[i]<<endl;
             }
+                cin>>jugador_delatado;
+            }
+            //Fin jugador a delatar
+            //Proceso en el que se comprueba si la acusacion es verdadera
+            cout<<"El jugador "<<nombres[jugador_que_delata-1]<<" ha acusado a "<<nombres[jugador_delatado-1]<<" de mentiroso."<<endl;
+            }
+        //Fin espacio para la funcion
+        
     return 0;
 }
 
