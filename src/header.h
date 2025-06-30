@@ -10,6 +10,12 @@
                         //Fin declaracion de librerias
 using namespace std;
 
-//Declaracion de funciones
+//determinamos unas constantes, para tener el numeros de cartas 
+const int MAX_JUGADORES = 4;
+const int CARTAS_POR_JUGADOR = 5;
+const int TOTAL_CARTAS = 16;
 
+//Declaracion de funciones
+string mazo[TOTAL_CARTAS];
+void mostrarCartaASCII(const string& carta);
 //Fin declaracion de funciones
