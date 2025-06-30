@@ -17,3 +17,5 @@ esto con el fin de minimizar la saturacion en nuestro archivo main.cpp.
 
 *El archivo Mesa_mentirosos.cpp quedara como copia de seguridad, ademas se creo un archivo llamado Mesa_mentirosos_PRUEBA.cpp en donde pueden
 modificar el codigo a su antojo*
+
+**IMPORTANTE: LOS ARCHVIOS main.cpp, header.h, def.cpp, aun NO FUNCIONAN, de momento seguir trabajando en el archivo Mesa_mentirosos.cpp

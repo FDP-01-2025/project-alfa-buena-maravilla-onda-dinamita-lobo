@@ -1,5 +1,5 @@
 //Incorporacion del archivo def.cpp
-#include "def.cpp"
+#include "src/header.h"
 
 int main (){
     srand(time(0));
