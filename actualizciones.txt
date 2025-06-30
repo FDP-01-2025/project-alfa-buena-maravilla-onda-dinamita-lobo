@@ -2,3 +2,15 @@
 -actualizar en una funcion el tamaño de la terminal y su orden
 -si se puede, buscar como hacer el el mazo se vea en horizontal y vertical
 -divison de archivos como funciones y demas en otros archivos y mandarlos a llamar
+-----------------------------------------------------------------------------------
+Con respecto a la nueva estructura del archivo segun indicaciones:
+1.Debe haber un archivo principal main.cpp, que deberá contener únicamente el llamado a las funciones principales del juego.
+2.Debe haber una carpeta llamada src/, en la cual deben colocarse todos los archivos .h correspondientes al desarrollo del juego.
+
+Nueva estructura del codigo:
+1. El archivo main solo manejara codigo que sea necesario para la ejecucion del codigo (switch, condicionales, ciclos, llamados 
+de funciones).
+2. La creacion de las funciones se realizara en el archivo def.cpp que se encuentra dentro de la carpeta src.
+3. Funcion que se crea dentro del archivo def.cpp es funcion que se debe agregar al archivo header.
+4. El archivo header.h tendra la declaracion de las funciones, la insecion de librerias y la funcion de using namespace std; todo 
+esto con el fin de minimizar la saturacion en nuestro archivo main.cpp.
