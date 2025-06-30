@@ -14,3 +14,6 @@ de funciones).
 3. Funcion que se crea dentro del archivo def.cpp es funcion que se debe agregar al archivo header.
 4. El archivo header.h tendra la declaracion de las funciones, la insecion de librerias y la funcion de using namespace std; todo 
 esto con el fin de minimizar la saturacion en nuestro archivo main.cpp.
+
+*El archivo Mesa_mentirosos.cpp quedara como copia de seguridad, ademas se creo un archivo llamado Mesa_mentirosos_PRUEBA.cpp en donde pueden
+modificar el codigo a su antojo*
