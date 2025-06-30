@@ -63,3 +63,22 @@ void mostrarMano(string mano[], int tam) {
     }
     cout << endl;
 }
+
+//hacemor una funcion para comprobar las cartas que tendra cada jugador
+int contarCarta(string mano[], int tam, string carta) {
+    int cont = 0;
+    for (int i = 0; i < tam; i++) {
+        if (mano[i] == carta) cont++;
+    }
+    return cont;
+}
+
+//cuando un jugador tire una carta, hacemos una funcion para que este elimine dicha carta
+void eliminarCartas(string mano[], int tam, string carta, int cantidad) {
+    for (int i = 0; i < tam && cantidad > 0; i++) {
+        if (mano[i] == carta) {
+            mano[i] = "";
+            cantidad--;
+        }
+    }
+}

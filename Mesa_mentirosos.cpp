@@ -111,7 +111,7 @@ void eliminarCartas(string mano[], int tam, string carta, int cantidad) {
 
 //empezamos a trabajar en el main
 int main (){
-      srand(time(0));
+    srand(time(0));
     int numJugadores;
     bool juegoActivo = true;
     int turno = 0;

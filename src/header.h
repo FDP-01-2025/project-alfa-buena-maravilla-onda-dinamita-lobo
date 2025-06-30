@@ -21,5 +21,7 @@ void mostrarCartaASCII(const string& carta);
 void barajarMazo(string m[], int n);
 void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[]);
 void mostrarMano(string mano[], int tam);
+int contarCarta(string mano[], int tam, string carta);
+void eliminarCartas(string mano[], int tam, string carta, int cantidad);
 
 //Fin declaracion de funciones
