@@ -18,4 +18,8 @@ const int TOTAL_CARTAS = 16;
 //Declaracion de funciones
 string mazo[TOTAL_CARTAS];
 void mostrarCartaASCII(const string& carta);
+void barajarMazo(string m[], int n);
+void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[]);
+void mostrarMano(string mano[], int tam);
+
 //Fin declaracion de funciones
