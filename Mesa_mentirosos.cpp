@@ -95,3 +95,68 @@ vector<string> obtenerCartaASCII(const string &carta)
     }
         return ascii_art;
 }
+
+// Ahora realizamos una funcion para poder hacer el barajeo
+void barajarMazo(string m[], int n)
+{
+     for (int i = 0; i < n; i++)
+    { // esto a travez de un bucle
+          int j = rand() % n;
+          string temp = m[i];
+          m[i] = m[j];
+          m[j] = temp;
+        
+    }
+}
+
+// repartimos en una funcion las cartas a los jugadores
+void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[])
+{
+     int pos = 0;
+     for (int i = 0; i < numJugadores; i++)
+    {
+          for (int j = 0; j < CARTAS_POR_JUGADOR; j++)
+        {
+               manos[i][j] = m[pos++];
+             
+        }
+        
+    }
+}
+
+// Se modifica la función para mostrar las cartas horizontalmente.
+void mostrarMano(string mano[], int tam)
+{
+     // Se obtiene el arte ASCII de todas las cartas en la mano y se almacena en un vector de vectores de strings.
+   vector<vector<string>> cartas_ascii;
+     for (int i = 0; i < tam; i++)
+    {
+          if (mano[i] != "")
+        {
+               cartas_ascii.push_back(obtenerCartaASCII(mano[i]));
+             
+        }
+        
+    }
+
+     // Se asume que todas las cartas tienen el mismo número de líneas para la representación ASCII.
+   if (!cartas_ascii.empty())
+    {
+          int num_lineas_carta = cartas_ascii[0].size();
+          // Se itera a través de cada línea del arte ASCII de las cartas.
+    for (int i = 0; i < num_lineas_carta; i++)
+        {
+               // Se itera a través de cada carta en la mano.
+     for (const auto &carta_art : cartas_ascii)
+            {
+                // Se imprime la línea actual de la carta seguida de un espacio.
+                cout << carta_art[i] << " ";
+            }
+            // Se imprime un salto de línea después de imprimir la misma línea de todas las cartas.
+            cout << endl;
+             
+        }
+        
+    }
+     cout << endl;
+}
