@@ -6,6 +6,9 @@ int main (){
     int numJugadores;
     bool juegoActivo = true;
     int turno = 0;
+    char respuesta;
+    int jugador_que_delata;
+    int jugador_delatado;
     string nombres[MAX_JUGADORES];
     string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR];
 
@@ -68,10 +71,6 @@ int main (){
         /*Las variables hay que moverlas, se encuentran acá como una simple prueba y
         comodidad a la hora de codificar.
         La funcion de system("cls") es para limpiar la consola.*/
-        char respuesta;
-        int jugador_que_delata;
-        int jugador_delatado;
-
         cout<<"Alguien quiere acusar? (S/N)"<<endl;
         cin>>respuesta;
         
