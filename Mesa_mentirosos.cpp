@@ -25,6 +25,8 @@ que cumplir un castigo o reto.*/
 // esta libreria es en funcion al tiempo, utilizda para poder inicializar el barajeo ramdoom, la idea es que haga que
 // cada barajeo sea diferente
 #include <ctime>
+//Libreria para los archivos donde se guardan las puntuaciones
+#include <fstream>
 using namespace std;
 
 // Determinamos unas constantes, para tener el numeros de cartas
@@ -187,6 +189,27 @@ void eliminarCartas(string mano[], int tam, string carta, int cantidad)
          
     }
 }
+//Estructura y funcion de tabla de puntuaciones
+struct puntos_jugadores{
+    string nombre;
+    int victorias;
+};
+
+void cargar_tabla_de_puntos(){
+    ifstream tabla_puntos("archivo_prueba.txt");
+    puntos_jugadores puntos;
+
+    if(tabla_puntos.is_open()){
+        cout<<"Nombre ---------- Victorias \n";
+        while(tabla_puntos >> puntos.nombre >> puntos.victorias){
+            cout<<puntos.nombre<<" -------------"<<
+                puntos.victorias<<endl;
+        }
+        tabla_puntos.close();
+    }else{
+        cout<<"Error con el archivo";
+    }
+}
 
 // Empezamos a trabajar en el main
 int main()
@@ -196,16 +219,33 @@ int main()
       SetConsoleCP(CP_UTF8);
 
       srand(time(0));
-
+      int opcion=0;
       int numJugadores;
       bool juegoActivo = true;
       int turno = 0;
       string nombres[MAX_JUGADORES];
       string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR];
       // Array para rastrear los turnos perdidos.
-   bool turnosPerdidos[MAX_JUGADORES] = {false};
+      bool turnosPerdidos[MAX_JUGADORES] = {false};
 
-      // damos la bienvenida a los usuarios, con codigo ascii para que sea bonito tambien
+
+  do{ //do
+    cout << "Bienvenido al juego: 'La mesa de los mentirosos' \n";
+    cout << " 1.Jugar \n 2.Tabla de puntuaciones \n 3.Salir";
+    cout << "\n Ingrese una opcion: ";
+    cin >> opcion;
+
+    while (opcion < 1 || opcion > 3)
+    {
+        cout << "Bienvenido al juego: 'La mesa de los mentirosos'";
+        cout << "1.Jugar \n 2.Tabla de puntuaciones \n 3.Salir";
+        cout << "\n Ingrese una opcion correcta: ";
+        cin >> opcion;
+    }
+
+    switch(opcion){
+      case 1:
+        // damos la bienvenida a los usuarios, con codigo ascii para que sea bonito tambien
    cout << "\n";
       cout << " || Bienvenido a la mesa de los mentirosos! ||\n";
       cout << "\n";
@@ -418,5 +458,17 @@ int main()
          
     }
 
+      break;
+
+    case 2:
+        cargar_tabla_de_puntos();
+        cout << "Presione Enter para salir..." << endl;
+        cin.ignore();
+        break;
+    } // Fin switch menu principal
+    }
+    while(opcion!=3);
+    // fin switch menu principal
+      
       return 0;
 }
