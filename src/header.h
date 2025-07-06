@@ -1,30 +1,30 @@
-                        //Declaracion de librerias
+//Declaracion de librerias
 #ifndef HEADER_H  // Guarda para evitar inclusiones múltiples
 #define HEADER_H
 #include <iostream>
 //ya usada en clase que nos ayudara con cadenas de texto 
 #include <string>
-//esta libreria nos ayudara con la generacion de numeros ramdom o utilidades ramdomizando ciertas cosas.
+//esta libreria nos ayudara con la generación de números random o utilidades randomizando ciertas cosas.
 #include <cstdlib>
-//esta libreria es en funcion al tiempo, utilizda para poder inicializar el barajeo ramdoom, la idea es que haga que
+//esta libreria es en función al tiempo, utilizada para poder inicializar el barajeo random, la idea es que haga que
 //cada barajeo sea diferente
 #include <ctime>
-                        //Fin declaracion de librerias
+//Fin declaración de librerías
 using namespace std;
 
-//determinamos unas constantes, para tener el numeros de cartas 
-const int MAX_JUGADORES = 4;
-const int CARTAS_POR_JUGADOR = 5;
-const int TOTAL_CARTAS = 16;
+//determinamos unas constantes, para tener el número de cartas 
+const int MAX_PLAYERS = 4;
+const int CARDS_PER_PLAYER = 5;
+const int TOTAL_CARDS = 16;
 
-//Declaracion de funciones
-extern string mazo[TOTAL_CARTAS];
-void mostrarCartaASCII(const string& carta);
-void barajarMazo(string m[], int n);
-void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[]);
-void mostrarMano(string mano[], int tam);
-int contarCarta(string mano[], int tam, string carta);
-void eliminarCartas(string mano[], int tam, string carta, int cantidad);
+//Declaración de funciones
+extern string deck[TOTAL_CARDS];
+void showCardASCII(const string& card);
+void shuffleDeck(string d[], int n);
+void dealCards(string hands[MAX_PLAYERS][CARDS_PER_PLAYER], int numPlayers, string d[]);
+void showHand(string hand[], int size);
+int countCard(string hand[], int size, string card);
+void removeCards(string hand[], int size, string card, int quantity);
 
-//Fin declaracion de funciones
+//Fin declaración de funciones
 #endif
