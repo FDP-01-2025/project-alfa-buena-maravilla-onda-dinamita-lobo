@@ -1,20 +1,20 @@
-//Incorporacion del archivo def.cpp
+//Incorporación del archivo def.cpp
 #include "src/header.h"
 
-int main (){
+int main () {
     srand(time(0));
-    int numJugadores;
-    bool juegoActivo = true;
-    int turno = 0;
-    char respuesta;
-    int jugador_que_delata;
-    int jugador_delatado;
-    string nombres[MAX_JUGADORES];
-    string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR];
+    int numPlayers;
+    bool gameActive = true;
+    int turn = 0;
+    char response;
+    int accusingPlayer;
+    int accusedPlayer;
+    string names[MAX_PLAYERS];
+    string hands[MAX_PLAYERS][CARDS_PER_PLAYER];
 
-    // damos la bienvenida a los usuarios , con codigo ascii para que sea bonito tambien
+    // damos la bienvenida a los usuarios , con código ascii para que sea bonito también
     cout << "╔══════════════════════════════════════════════════════╗\n";
-    cout << "║        Bienvenido a la mesa de los mentirosos!      ║\n";
+    cout << "║        Bienvenido a la mesa de los mentirosos!       ║\n";
     cout << "╚══════════════════════════════════════════════════════╝\n";
     cout << "El mazo de cartas contiene: Rey, Reina, As y Jocker.\n";
     cout << "Cada jugador recibira 5 cartas al inicio del juego.\n";
@@ -24,99 +24,95 @@ int main (){
     cout << "Presione Enter para comenzar el juego..." << endl;
     cin.ignore();
 
-    //los jugadores no pueden ser menos de 2 por lo que preguntamos y de una comprobamos
-     // Número de jugadores
+    // los jugadores no pueden ser menos de 2 por lo que preguntamos y de una comprobamos
     cout << "Cuantos jugadores participaran en el juego? (2-4 jugadores): ";
-    cin >> numJugadores;
-    while (numJugadores < 2 || numJugadores > 4) {
+    cin >> numPlayers;
+    while (numPlayers < 2 || numPlayers > 4) {
         cout << "Numero de jugadores invalido. Por favor ingrese un numero entre 2 y 4: ";
-        cin >> numJugadores;
+        cin >> numPlayers;
     }
 
-    //pedimos los nombres de los jugadores para referirnos a ellos 
+    // pedimos los nombres de los jugadores para referirnos a ellos 
     cout << "Ingresa los nombres de los jugadores:" << endl;
-    for (int i = 0; i < numJugadores; i++) {
+    for (int i = 0; i < numPlayers; i++) {
         cout << "Jugador " << (i + 1) << ": ";
-        cin >> nombres[i];
+        cin >> names[i];
     }
 
-    //llamamos las funciones para abrajear y repartir
-    // Barajar y repartir cartas
-    barajarMazo(mazo, TOTAL_CARTAS);
-    repartirCartas(manos, numJugadores, mazo);
-//iniciamos el juego
-    while (juegoActivo) {
+    // llamamos las funciones para barajar y repartir
+    shuffleDeck(deck, TOTAL_CARDS);
+    dealCards(hands, numPlayers, deck);
+
+    // iniciamos el juego
+    while (gameActive) {
         cout << "\n═══════════════════════════════════════════════════════\n";
-        cout << "Turno de " << nombres[turno] << endl;
+        cout << "Turno de " << names[turn] << endl;
         cout << "Tus cartas: " << endl;
-        mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
+        showHand(hands[turn], CARDS_PER_PLAYER);
 
         // Reclamar carta
-        string reclamo;
+        string claim;
         cout << "¿Qué carta reclamas (Rey, Reina, As, Jocker)? ";
-        cin >> reclamo;
+        cin >> claim;
 
         // Los demás jugadores tiran cartas (pueden mentir)
-        for (int j = 0; j < numJugadores; j++) {
-            if (j == turno) continue;
-            cout << nombres[j] << ", estas son tus cartas:" << endl;
-            mostrarMano(manos[j], CARTAS_POR_JUGADOR);
-            cout << nombres[j] << ", ¿cuántas cartas quieres tirar como '" << reclamo << "'? ";
-            int cantidad;
-            cin >> cantidad;
-            eliminarCartas(manos[j], CARTAS_POR_JUGADOR, reclamo, cantidad);
+        for (int j = 0; j < numPlayers; j++) {
+            if (j == turn) continue;
+            cout << names[j] << ", estas son tus cartas:" << endl;
+            showHand(hands[j], CARDS_PER_PLAYER);
+            cout << names[j] << ", ¿cuántas cartas quieres tirar como '" << claim << "'? ";
+            int quantity;
+            cin >> quantity;
+            removeCards(hands[j], CARDS_PER_PLAYER, claim, quantity);
         }
-        }
-        //Espacio para probar la funcion de delatar un jugador mentiroso
-        /*Las variables hay que moverlas, se encuentran acá como una simple prueba y
-        comodidad a la hora de codificar.
-        La funcion de system("cls") es para limpiar la consola.*/
-        cout<<"Alguien quiere acusar? (S/N)"<<endl;
-        cin>>respuesta;
-        
-        while (respuesta != 's' && respuesta != 'S' && respuesta != 'n' && respuesta != 'N') {
+
+        // Espacio para probar la función de delatar un jugador mentiroso
+        cout << "¿Alguien quiere acusar? (S/N)" << endl;
+        cin >> response;
+
+        while (response != 's' && response != 'S' && response != 'n' && response != 'N') {
             cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
-            cin >> respuesta;
-            system("cls");//cls
+            cin >> response;
+            system("cls"); // limpiar consola
         }
-        if(respuesta == 's' || respuesta == 'S'){
-            cout<<"Seleccione su nombre de jugador"<<endl;
-            for(int i=0; i<numJugadores; i++){
-                cout<<i+1<<". "<<nombres[i]<<endl;
-            }
-            cin>>jugador_que_delata;
-            system("cls");//cls
-            while(jugador_que_delata<1 || jugador_que_delata>numJugadores){
-                system("cls");//cls
-                cout<<"Seleccione un jugador valido"<<endl;
-                cin>>jugador_que_delata;
-            }
-            system("cls");//cls
 
-            //Jugadores a delatar
-            cout<<"A que jugador deseas delatar?"<<endl;
-            for(int i=0; i<numJugadores; i++){
-                cout<<i+1<<". "<<nombres[i]<<endl;
+        if (response == 's' || response == 'S') {
+            cout << "Seleccione su nombre de jugador" << endl;
+            for (int i = 0; i < numPlayers; i++) {
+                cout << i + 1 << ". " << names[i] << endl;
             }
-            cin>>jugador_delatado;
+            cin >> accusingPlayer;
+            system("cls");
 
-             while(jugador_delatado<1 || jugador_delatado>numJugadores || jugador_delatado==jugador_que_delata){
-                if(jugador_delatado==jugador_que_delata){
-                    cout<<"No te puedes delatar a ti mismo"<<endl;
+            while (accusingPlayer < 1 || accusingPlayer > numPlayers) {
+                system("cls");
+                cout << "Seleccione un jugador valido" << endl;
+                cin >> accusingPlayer;
+            }
+            system("cls");
+
+            // Jugadores a delatar
+            cout << "¿A qué jugador deseas delatar?" << endl;
+            for (int i = 0; i < numPlayers; i++) {
+                cout << i + 1 << ". " << names[i] << endl;
+            }
+            cin >> accusedPlayer;
+
+            while (accusedPlayer < 1 || accusedPlayer > numPlayers || accusedPlayer == accusingPlayer) {
+                if (accusedPlayer == accusingPlayer) {
+                    cout << "No te puedes delatar a ti mismo" << endl;
                 }
-                cout<<"Seleccione un jugador valido"<<endl;
-                for(int i=0; i<numJugadores; i++){
-                cout<<i+1<<". "<<nombres[i]<<endl;
+                cout << "Seleccione un jugador valido" << endl;
+                for (int i = 0; i < numPlayers; i++) {
+                    cout << i + 1 << ". " << names[i] << endl;
+                }
+                cin >> accusedPlayer;
             }
-                cin>>jugador_delatado;
-            }
-            //Fin jugador a delatar
-            //Proceso en el que se comprueba si la acusacion es verdadera
-            cout<<"El jugador "<<nombres[jugador_que_delata-1]<<" ha acusado a "<<nombres[jugador_delatado-1]<<" de mentiroso."<<endl;
-            }
-        //Fin espacio para la funcion
-        
+
+            // Proceso en el que se comprueba si la acusación es verdadera
+            cout << "El jugador " << names[accusingPlayer - 1] << " ha acusado a " << names[accusedPlayer - 1] << " de mentiroso." << endl;
+        }
+    }
+
     return 0;
 }
-
-
