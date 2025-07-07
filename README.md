@@ -1,155 +1,176 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/mi1WNrHU)
-# 🎮 The Table of Liars
+# 🎮 La Mesa de los Mentirosos
+# 🎭 Tema y Ambientación
+La Mesa de los Mentirosos es un juego de cartas centrado en el engaño, la sospecha y la estrategia. Ambientado en una mesa ficticia, los jugadores deben engañar a los demás o descubrir quién está mintiendo. Cada ronda pone a prueba la habilidad del jugador para engañar, acusar o defenderse en un entorno controlado. Al colocar sus cartas, los jugadores deben convencer a los demás de que la carta que pusieron realmente es la que se pidió.
 
-# 🎭 Theme and Setting
-The Table of Liars is a card game centered around deception, suspicion, and strategy. Set at a fictional table, players must either deceive others or figure out who is lying. Each round challenges the player's ability to bluff, accuse, or defend themselves in a controlled environment. When placing their cards, players must convince others that what they played is truly the requested card.
+# 📝 Descripción
+"La Mesa de los Mentirosos" es un juego diseñado para 2 a 4 jugadores, donde a cada uno se le reparten 5 cartas.
+El mazo contiene Reyes, Reinas, Ases y un solo Joker, todos barajados y distribuidos al azar.
+La mesa (o un jugador por turno) pedirá una carta específica (Rey, Reina, As o Joker).
+Los demás jugadores deben colocar entre 1 y 3 cartas boca abajo (nunca 4 o 5).
 
-# 📝 Description
-"The Liars' Table" is a game designed for 2 to 4 players, where each player is dealt 5 cards.
-The deck contains Kings, Queens, Aces, and a single Joker, all shuffled and distributed randomly. The table (or a player in turn order) will request a specific card (King, Queen, Ace, or Joker). All other players must then place 1 to 3 cards face down (never 4 or 5).
-After the cards are placed, players have the option to trust the active player or accuse them of being a LIAR.
-If the player does have at least one of the requested cards, the accuser loses the round.
-If the player does not have the requested card, the active player loses the round.
-After each round:
-All cards are returned to the deck, reshuffled, and re-dealt.
-The player who lost the round is temporarily removed from the next one and must complete a punishment or challenge.
-The game is implemented in C++, using:
-
-  -Functions
+Después de colocar las cartas, los jugadores tienen la opción de confiar en el jugador activo o acusarlo de ser un MENTIROSO.
+  -Si el jugador tiene al menos una carta de la solicitada, el acusador pierde la ronda.
+  -Si el jugador no tiene la carta solicitada, el jugador activo pierde la ronda.
   
-  -Arrays
+Después de cada ronda:
+  -Todas las cartas se regresan al mazo, se barajan y se reparten de nuevo.
+  -El jugador que pierde la ronda queda temporalmente fuera de la siguiente y debe cumplir un castigo o reto.
   
-  -Control structures: if, else, while, do-while, for, and switch
+El juego está implementado en C++, utilizando:
 
-# 🕹️ Core Mechanics
--2 to 4 players are each dealt 5 random cards.
+-Funciones
 
--The deck includes Kings, Queens, Aces, and 1 Joker.
+-Arreglos
 
--A player or the table requests a specific card.
+Estructuras de control: 
+  -if
+  
+  -else
+  
+  -while
+  
+  -do-while
+  
+  -for
+  
+  -switch
 
--Other players must place 1 to 3 face-down cards.
+# 🕹️ Mecánicas Básicas
+-De 2 a 4 jugadores reciben 5 cartas aleatorias.
 
--Other players may accuse the active player of lying.
+-El mazo incluye Reyes, Reinas, Ases y 1 Joker.
 
--If the player has at least one of the requested card: the accuser loses.
+-Un jugador o la mesa pide una carta específica.
 
--If the player doesn't have the requested card: the player loses.
+-Los demás jugadores colocan entre 1 y 3 cartas boca abajo.
 
--The losing player sits out for the next round and must complete a challenge or punishment.
+-Los demás jugadores pueden acusar al jugador activo de mentir.
 
-# 🧠 General Gameplay Idea
-The main goal is to stay in the game as long as possible using strategy and deception. The game resets with a fresh hand of cards each round. A player is temporarily removed after losing a round. The last remaining player is the winner.
+-Si el jugador tiene al menos una carta pedida: el acusador pierde.
 
-# 💡 Application of Programming Concepts (with examples)
-*Constants*
+-Si el jugador no tiene la carta pedida: el jugador pierde.
 
+-El jugador que pierde se salta la siguiente ronda y debe cumplir un reto o castigo
+
+# 🧠 Idea General del Juego
+El objetivo principal es mantenerse en el juego el mayor tiempo posible usando estrategia y engaño. El juego se reinicia con una nueva mano de cartas en cada ronda. Un jugador se elimina temporalmente tras perder una ronda. El último jugador en pie es el ganador.
+
+# 💡Aplicación de Conceptos de Programación
+*Constantes*
+Tema no visto en clase pero investigado para poder plantear la cantidad de cartas que se podra tener en el juego.
 
 ![image](https://github.com/user-attachments/assets/3ac31978-0a74-4546-b738-eedf311b1a8f)
 
-  -MAX_JUGADORES: Maximum number of players allowed in a match.
+  -MAX_JUGADORES: Número máximo de jugadores permitidos en una partida.
 
-  -CARTAS_POR_JUGADOR: Number of cards each player gets.
+  -CARTAS_POR_JUGADOR: Número de cartas que recibe cada jugador.
 
-  -TOTAL_CARTAS: Total cards in the deck, including duplicates.
+  -TOTAL_CARTAS: Total de cartas en el mazo, incluyendo duplicados.
 
-*functions to be used*
+*Funciones a utilizar*
 ![image](https://github.com/user-attachments/assets/bdcc120a-b5a9-4a0c-9cee-d2112f154070)
 
-🔁 Card Operations:
-  -barajarMazo(): Shuffles the deck randomly using modern C++ generators.
+🔁 Operaciones con Cartas:
+Funciones planteadas para poder facilitar el uso en el main, cada funcion realizara algo especifico en el juego
 
-  -repartirCartas(): Distributes cards to all players.
+  -barajarMazo(): Baraja el mazo de forma aleatoria.
 
-  -contarCarta(): Counts how many cards of a certain type a player has.
+  -repartirCartas(): Reparte las cartas a todos los jugadores.
 
-  -eliminarCartas(): Removes specific cards from a player's hand.
+  -contarCarta(): Cuenta cuántas cartas de un tipo tiene un jugador.
 
-  🎴 ASCII Display
-  -mostrarCartaASCII(): Renders the ASCII art for a given card.
+  -eliminarCartas(): Elimina cartas específicas de la mano de un jugador.
 
-  -mostrarMano(): Displays all cards in a player’s hand horizontally.
+🎴 Visualización ASCII
 
-  🏆 Scoreboard Functions
-  -cargar_tabla_de_puntos(): Loads and displays scores from puntuaciones.txt.
+  -mostrarCartaASCII(): Muestra el arte ASCII de una carta específica.
 
-  -guardar_puntuacion(nombre): Increments and saves a player’s win in the score file.
+  -mostrarMano(): Muestra horizontalmente todas las cartas de un jugador.
+
+🏆 Funciones de Puntuación
+
+cargar_tabla_de_puntos(): Carga y muestra las puntuaciones desde puntuaciones.txt.
+
+guardar_puntuacion(nombre): Incrementa y guarda la victoria de un jugador en el archivo de puntuaciones.
   
-  *Deck Setup*
-The deck is represented as an array of strings with the following cards.
+  *Realizacion del mazo*
+El mazo se representa como un arreglo de strings con las siguientes cartas:
 ![image](https://github.com/user-attachments/assets/fe7ef5f6-ce9a-414e-a13b-19b165ea9837)
 
 
 
-*ASCII Art Rendering*
-Each card is drawn with a unique ASCII art style using a vector<string> in the function obtenerCartaASCII. Cards are printed horizontally using the mostrarMano() function.
+*Arte ASCII*
+Cada carta se dibuja con un estilo ASCII  utilizando un vector<string> en la función obtenerCartaASCII. Las cartas se imprimen horizontalmente con mostrarMano().
 ![image](https://github.com/user-attachments/assets/62a6a839-5c6c-40d0-8185-b07f93bb2703)
 
 
 
 # ⚙️ Technical Considerations of Development
-  -Programming Language: C++
+  -Lenguaje de programacion en C++
   
-  -Editor Used: Visual Studio Code
+  -Editor usado: Visual studio code
   
-  -Compiler: g++
+  -Compilador para C++, como por ejemplo G++
 
 # 📚 Libraries Used:
 ![image](https://github.com/user-attachments/assets/f96f6eb6-9c28-461a-b0fd-4b832b269829)
 
-  -#include iostream: Input and output
-  
-  -#include string: Strings for card names, player names
-  
-  -#include cstdlib: For rand(), system(), etc.
-  
-  -#include vector: Used to store and render ASCII art of cards
-  
-  -#include windows.h: For manipulating console encoding on Windows
-  
-  -#include ctime: For random seeding with time
-  
-  -#include fstream: File operations for score saving/loading
-  
-  -#include algorithm: For shuffle
-  
-  -#include random: Modern random number generators
-  
-  -using namespace std: Allows you to write cout instead of std::cout, etc.
+
+  -#include iostream: Entrada y salida estándar
+
+  -#include string: Cadenas para nombres de cartas y jugadores
+
+  -#include cstdlib: Para rand(), system(), etc, usado mas que todo en system().
+
+  -#include vector: Usado para almacenar y mostrar el arte ASCII de las cartas
+
+  -#include windows.h: Para manipular la codificación de consola en Windows
+
+  -#include ctime: Para semillas aleatorias basadas en el tiempo
+
+  -#include fstream: Operaciones con archivos para guardar/cargar puntuaciones
+
+  -#include algorithm: Para usar shuffle
+
+  -#include random: Generadores modernos de números aleatorios
+
+  -using namespace std: Permite escribir cout en lugar de std::cout, etc.
 
 # Imágenes o mockups del juego
 
-## **Developer team name:**
+## **Nombre de el equipo**
 - project alfa buena maravilla onda dinamita lobo
 ### **Team members' names:**
-1. **Name** Ricardo Ernesto Iglesias Flores 
-   **Student id:** 00000725
+1. **Nombre** Ricardo Ernesto Iglesias Flores 
+   **Carnet:** 00000725
 
-2. **Name** Gael Alexander Martinez Alas 
-   **Student id:** 00033625
+2. **Nombre** Gael Alexander Martinez Alas 
+   **Carnet:** 00033625
 
-3. **Name** Daniel Alejandro Lopez Ruano 
-   **Student id:** 00156625
+3. **Nombre** Daniel Alejandro Lopez Ruano 
+   **Carnet** 00156625
    
-4. **Name** Roque Ignacio Flores Jovel 
-   **Student id:** 00017525
+4. **Nombre** Roque Ignacio Flores Jovel 
+   **Carnet** 00017525
    
-## 🏁 How to Run the game
-Clone the repo:
+## 🏁 Como correr el juego
+Clona el repo:
 
 
 ![image](https://github.com/user-attachments/assets/b9f31083-aa17-48ba-b9b8-268a248bb2c1)
 
 git clone https://github.com/yourusername/la-mesa-de-los-mentirosos.git
 cd "project-alfa-buena-maravilla-onda-dinamita-lobo"
-Compile using any C++ compiler. 
-with g++:
+Compilalo con el compilador de C++. 
+
+Con g++:
 
 
 ![image](https://github.com/user-attachments/assets/3d710f35-01c1-41ad-8964-1481835aae99)
 
 g++ -o game main.cpp
-Run the game:
+Luego corre el juego:
 
 
 ![image](https://github.com/user-attachments/assets/0fec167b-f786-40bc-8e52-84378d83cad4)
