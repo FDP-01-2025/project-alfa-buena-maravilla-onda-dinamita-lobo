@@ -42,6 +42,46 @@ The game is implemented in C++, using:
 The main goal is to stay in the game as long as possible using strategy and deception. The game resets with a fresh hand of cards each round. A player is temporarily removed after losing a round. The last remaining player is the winner.
 
 # 💡 Application of Programming Concepts (with examples)
+*Constants*
+![image](https://github.com/user-attachments/assets/3ac31978-0a74-4546-b738-eedf311b1a8f)
+
+  -MAX_JUGADORES: Maximum number of players allowed in a match.
+
+  -CARTAS_POR_JUGADOR: Number of cards each player gets.
+
+  -TOTAL_CARTAS: Total cards in the deck, including duplicates.
+
+*functions to be used*
+![image](https://github.com/user-attachments/assets/bdcc120a-b5a9-4a0c-9cee-d2112f154070)
+
+🔁 Card Operations:
+  -barajarMazo(): Shuffles the deck randomly using modern C++ generators.
+
+  -repartirCartas(): Distributes cards to all players.
+
+  -contarCarta(): Counts how many cards of a certain type a player has.
+
+  -eliminarCartas(): Removes specific cards from a player's hand.
+
+  🎴 ASCII Display
+  -mostrarCartaASCII(): Renders the ASCII art for a given card.
+
+  -mostrarMano(): Displays all cards in a player’s hand horizontally.
+
+  🏆 Scoreboard Functions
+  -cargar_tabla_de_puntos(): Loads and displays scores from puntuaciones.txt.
+
+  -guardar_puntuacion(nombre): Increments and saves a player’s win in the score file.
+  
+  *Deck Setup*
+The deck is represented as an array of strings with the following cards:
+![image](https://github.com/user-attachments/assets/fe7ef5f6-ce9a-414e-a13b-19b165ea9837)
+
+*ASCII Art Rendering*
+![image](https://github.com/user-attachments/assets/62a6a839-5c6c-40d0-8185-b07f93bb2703)
+Each card is drawn with a unique ASCII art style using a vector<string> in the function obtenerCartaASCII. Cards are printed horizontally using the mostrarMano() function.
+
+
 
 # ⚙️ Technical Considerations of Development
   -Programming Language: C++
@@ -51,20 +91,28 @@ The main goal is to stay in the game as long as possible using strategy and dece
   -Compiler: g++
 
 # 📚 Libraries Used:
-  -#include <iostream>:
+![image](https://github.com/user-attachments/assets/f96f6eb6-9c28-461a-b0fd-4b832b269829)
+
+  -#include <iostream>     // Input and output
   
-  -#include string
+  -#include <string>       // Strings for card names, player names
   
-  -#include cstdlib
+  -#include <cstdlib>      // For rand(), system(), etc.
   
-  -#include vector
+  -#include <vector>       // Used to store and render ASCII art of cards
   
-  -#include windows.h
+  -#include <windows.h>    // For manipulating console encoding on Windows
   
-  -#include ctime
+  -#include <ctime>        // For random seeding with time
   
-  -El juego funciona por consola o tambien llamada terminar, no necesita una interfaz grafica.
+  -#include <fstream>      // File operations for score saving/loading
   
+  -#include <algorithm>    // For shuffle
+  
+  -#include <random>       // Modern random number generators
+  
+  -using namespace std     //Allows you to write cout instead of std::cout, etc.
+
 # Imágenes o mockups del juego
 
 ## **Developer team name:**
