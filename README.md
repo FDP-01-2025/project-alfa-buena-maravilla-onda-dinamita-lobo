@@ -95,25 +95,25 @@ Each card is drawn with a unique ASCII art style using a vector<string> in the f
 # 📚 Libraries Used:
 ![image](https://github.com/user-attachments/assets/f96f6eb6-9c28-461a-b0fd-4b832b269829)
 
-  -#include <iostream>     // Input and output
+  -#include iostream: Input and output
   
-  -#include <string>       // Strings for card names, player names
+  -#include string: Strings for card names, player names
   
-  -#include <cstdlib>      // For rand(), system(), etc.
+  -#include cstdlib: For rand(), system(), etc.
   
-  -#include <vector>       // Used to store and render ASCII art of cards
+  -#include vector: Used to store and render ASCII art of cards
   
-  -#include <windows.h>    // For manipulating console encoding on Windows
+  -#include windows.h: For manipulating console encoding on Windows
   
-  -#include <ctime>        // For random seeding with time
+  -#include ctime: For random seeding with time
   
-  -#include <fstream>      // File operations for score saving/loading
+  -#include fstream: File operations for score saving/loading
   
-  -#include <algorithm>    // For shuffle
+  -#include algorithm: For shuffle
   
-  -#include <random>       // Modern random number generators
+  -#include random: Modern random number generators
   
-  -using namespace std     //Allows you to write cout instead of std::cout, etc.
+  -using namespace std: Allows you to write cout instead of std::cout, etc.
 
 # Imágenes o mockups del juego
 
@@ -132,8 +132,21 @@ Each card is drawn with a unique ASCII art style using a vector<string> in the f
 4. **Name** Roque Ignacio Flores Jovel 
    **Student id:** 00017525
    
-## Instrucciones de Ejecución
+## 🏁 How to Run the game
+Clone the repo:
+![image](https://github.com/user-attachments/assets/b9f31083-aa17-48ba-b9b8-268a248bb2c1)
 
-1. Clona este repositorio en tu máquina local:
-   ```bash
-   git clone [URL del repositorio]
+
+git clone https://github.com/yourusername/la-mesa-de-los-mentirosos.git
+cd "project-alfa-buena-maravilla-onda-dinamita-lobo"
+Compile using any C++ compiler. 
+with g++:
+![image](https://github.com/user-attachments/assets/3d710f35-01c1-41ad-8964-1481835aae99)
+
+
+g++ -o game main.cpp
+Run the game:
+![image](https://github.com/user-attachments/assets/0fec167b-f786-40bc-8e52-84378d83cad4)
+
+
+./game
