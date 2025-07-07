@@ -334,6 +334,10 @@ int main()
                     {
                         system("cls");
                         cout << "Seleccione un jugador valido" << endl;
+                         for (int i = 0; i < numPlayers; i++)
+                    {
+                        cout << i + 1 << ". " << names[i] << endl;
+                    }
                         cin >> accusingPlayer;
                         accusingPlayer--;
                     }
