@@ -100,7 +100,7 @@ El mazo se representa como un arreglo de strings con las siguientes cartas:
 
 
 
-*Arte ASCII*
+*Arte ASCII y interfaz en la terminal*
 Cada carta se dibuja con un estilo ASCII  utilizando un vector<string> en la función obtenerCartaASCII. Las cartas se imprimen horizontalmente con mostrarMano().
 ![image](https://github.com/user-attachments/assets/62a6a839-5c6c-40d0-8185-b07f93bb2703)
 
@@ -112,6 +112,19 @@ Cada carta se dibuja con un estilo ASCII  utilizando un vector<string> en la fun
   -Editor usado: Visual studio code
   
   -Compilador para C++, como por ejemplo G++
+
+# Uso de if, else, else if
+El uso de el if, else y else if fue muy ocupado en toda la logica de el juego mas que todo en las funciones, iniciando desde el arte ASCII, se empezo a utilizar dicha condicional, para poder imprimir de manera correcta el arte.
+
+![image](https://github.com/user-attachments/assets/d5bd6eee-eb68-4f6e-aa30-a6f1061812e1)
+
+
+Tambien se le dio uso en la funcion de "Mostrar
+# Uso de For 
+# Uso de los swich
+# Uso de while y do while
+# Manejo de archivos
+
 
 # 📚 Libraries Used:
 ![image](https://github.com/user-attachments/assets/f96f6eb6-9c28-461a-b0fd-4b832b269829)
