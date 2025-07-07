@@ -310,7 +310,7 @@ int main()
                 }
 
                 // pedimos los nombres de los jugadores para referirnos a ellos
-                cout << "Ingresa los nombres de los jugadores:" << endl;
+                cout << "Ingresa los nombres de los jugadores: " << endl;
                 for (int i = 0; i < numJugadores; i++) {
                     cout << "Jugador " << (i + 1) << ": ";
                     cin >> nombres[i];
