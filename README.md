@@ -43,6 +43,8 @@ The main goal is to stay in the game as long as possible using strategy and dece
 
 # 💡 Application of Programming Concepts (with examples)
 *Constants*
+
+
 ![image](https://github.com/user-attachments/assets/3ac31978-0a74-4546-b738-eedf311b1a8f)
 
   -MAX_JUGADORES: Maximum number of players allowed in a match.
