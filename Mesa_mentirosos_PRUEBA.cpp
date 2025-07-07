@@ -71,7 +71,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("│   ♠   │");
         ascii_art.push_back("│  / _ \\│");
         ascii_art.push_back("│ ( o ) │");
-        ascii_art.push_back("│ \\_~_/ │");
+        ascii_art.push_back("│ \\~/ │");
         ascii_art.push_back("│     Q │");
         ascii_art.push_back("└───────┘");
 
@@ -93,7 +93,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("┌───────┐");
         ascii_art.push_back("│ JKR   │");
         ascii_art.push_back("│   ♣   │");
-        ascii_art.push_back("│   _^_ │");
+        ascii_art.push_back("│   ^ │");
         ascii_art.push_back("│ |o_o| │");
         ascii_art.push_back("│   \\_/ │");
         ascii_art.push_back("│   JKR │");
@@ -215,7 +215,7 @@ void cargar_tabla_de_puntos() {
         }
         tabla_puntos.close();
     } else {
-        cout << "No se pudo cargar la tabla de puntuaciones. ¡Juega para ya empezar a registrar!\n";
+        cout << "No se pudo cargar la tabla de puntuaciones. ¡Juega para empezar a registrar!\n";
     }
 }
 
@@ -260,6 +260,7 @@ void guardar_puntuacion(const string& nombre_jugador) {
 // Empezamos a trabajar en el main
 int main()
 {
+    system("cls");
     // Establece la codificación de la consola a UTF-8 para que los caracteres especiales se muestren correctamente.
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
@@ -282,12 +283,17 @@ int main()
         cout << " 1. Jugar\n 2. Tabla de puntuaciones\n 3. Salir\n";
         cout << "Ingrese una opcion: ";
         cin >> opcion;
+        system("cls");
 
         // Validación de entrada para el menú principal
         while (opcion < 1 || opcion > 3) {
-            cout << "Opción inválida. Por favor, ingrese un número entre 1 y 3: ";
-            cout << "Ingrese una opcion: ";
+            cout << "\n=========================================\n";
+            cout << "Bienvenido al juego: 'La Mesa de los Mentirosos'\n";
+            cout << "=========================================\n";
+            cout << " 1. Jugar\n 2. Tabla de puntuaciones\n 3. Salir\n";
+            cout << "Ingrese una opcion corecta: ";
             cin >> opcion;
+            system("cls");
         }
 
         switch (opcion) {
@@ -303,14 +309,17 @@ int main()
                 cout << "Presione Enter para comenzar el juego..." << endl;
                 cin.ignore(); // Limpiar el buffer de entrada
                 cin.get();    // Esperar a que el usuario presione Enter
+                system("cls"); // Borra la consola
 
                 // Número de jugadores
                 cout << "¿Cuantos jugadores participaran en el juego? (2-4 jugadores): ";
                 cin >> numJugadores;
+                system("cls"); // Borra la consola
 
                 while (numJugadores < 2 || numJugadores > MAX_JUGADORES) {
                     cout << "Numero de jugadores invalido. Por favor ingrese un numero entre 2 y 4: ";
                     cin >> numJugadores;
+                    system("cls"); // Borra la consola
                 }
 
                 // pedimos los nombres de los jugadores para referirnos a ellos
@@ -551,6 +560,7 @@ int main()
                     cout << "\nPresione Enter para continuar al siguiente turno o al menu principal...\n";
                     cin.ignore();
                     cin.get();
+                    system("cls"); // Borra la consola
                 } // Fin del while (juegoActivo)
                 break;
             } // Fin case 1
@@ -560,6 +570,7 @@ int main()
                 cout << "\nPresione Enter para salir al menu principal..." << endl;
                 cin.ignore(); // Limpiar el buffer de entrada
                 cin.get();    // Esperar a que el usuario presione Enter
+                system("cls"); // Borra la consola
                 break;
 
             case 3:
