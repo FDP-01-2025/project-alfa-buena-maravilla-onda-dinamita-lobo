@@ -134,6 +134,8 @@ Each card is drawn with a unique ASCII art style using a vector<string> in the f
    
 ## 🏁 How to Run the game
 Clone the repo:
+
+
 ![image](https://github.com/user-attachments/assets/b9f31083-aa17-48ba-b9b8-268a248bb2c1)
 
 
@@ -141,11 +143,15 @@ git clone https://github.com/yourusername/la-mesa-de-los-mentirosos.git
 cd "project-alfa-buena-maravilla-onda-dinamita-lobo"
 Compile using any C++ compiler. 
 with g++:
+
+
 ![image](https://github.com/user-attachments/assets/3d710f35-01c1-41ad-8964-1481835aae99)
 
 
 g++ -o game main.cpp
 Run the game:
+
+
 ![image](https://github.com/user-attachments/assets/0fec167b-f786-40bc-8e52-84378d83cad4)
 
 
