@@ -51,17 +51,17 @@ The main goal is to stay in the game as long as possible using strategy and dece
   -Compiler: g++
 
 # 📚 Libraries Used:
-  -#include <iostream>
+  -#include <iostream>:
   
-  -#include <string>
+  -#include <string>:
   
-  -#include <cstdlib>
+  -#include <cstdlib>:
   
-  -#include <vector>
+  -#include <vector>:
   
-  -#include <windows.h>
+  -#include <windows.h>:
   
-  -#include <ctime>
+  -#include <ctime>:
   
   -El juego funciona por consola o tambien llamada terminar, no necesita una interfaz grafica.
   
