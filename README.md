@@ -23,12 +23,19 @@ The game is implemented in C++, using:
 
 🕹️ Core Mechanics
 -2 to 4 players are each dealt 5 random cards.
+
 -The deck includes Kings, Queens, Aces, and 1 Joker.
+
 -A player or the table requests a specific card.
+
 -Other players must place 1 to 3 face-down cards.
+
 -Other players may accuse the active player of lying.
+
 -If the player has at least one of the requested card: the accuser loses.
+
 -If the player doesn't have the requested card: the player loses.
+
 -The losing player sits out for the next round and must complete a challenge or punishment.
 
 # 🧠 General Gameplay Idea
@@ -38,16 +45,24 @@ The main goal is to stay in the game as long as possible using strategy and dece
 
 # ⚙️ Technical Considerations of Development
   -Programming Language: C++
+  
   -Editor Used: Visual Studio Code
+  
   -Compiler: g++
 
 # 📚 Libraries Used:
   -#include <iostream>
+  
   -#include <string>
+  
   -#include <cstdlib>
+  
   -#include <vector>
+  
   -#include <windows.h>
+  
   -#include <ctime>
+  
   -El juego funciona por consola o tambien llamada terminar, no necesita una interfaz grafica.
   
 # Imágenes o mockups del juego
