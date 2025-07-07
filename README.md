@@ -21,7 +21,7 @@ The game is implemented in C++, using:
   
   -Control structures: if, else, while, do-while, for, and switch
 
-🕹️ Core Mechanics
+# 🕹️ Core Mechanics
 -2 to 4 players are each dealt 5 random cards.
 
 -The deck includes Kings, Queens, Aces, and 1 Joker.
@@ -53,15 +53,15 @@ The main goal is to stay in the game as long as possible using strategy and dece
 # 📚 Libraries Used:
   -#include <iostream>:
   
-  -#include <string>:
+  -#include string
   
-  -#include <cstdlib>:
+  -#include cstdlib
   
-  -#include <vector>:
+  -#include vector
   
-  -#include <windows.h>:
+  -#include windows.h
   
-  -#include <ctime>:
+  -#include ctime
   
   -El juego funciona por consola o tambien llamada terminar, no necesita una interfaz grafica.
   
