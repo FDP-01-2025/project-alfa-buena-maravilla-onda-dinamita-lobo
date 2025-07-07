@@ -363,105 +363,104 @@ int main()
                     cout << "Tus cartas: " << endl;
                     mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
 
-                    // Reclamar carta (la carta que el jugador en turno dice que va a tirar)
-                    string reclamo;
-                    // Bucle para validar la entrada del reclamo
-                    while (true) {
-                        cout << "¿Que carta reclamas tirar (Rey, Reina, As, Jocker)? ";
-                        cin >> reclamo;
-                        // Convertir a minúsculas para una comparación insensible a mayúsculas
-                        transform(reclamo.begin(), reclamo.end(), reclamo.begin(), ::tolower);
-                        if (reclamo == "rey" || reclamo == "reina" || reclamo == "as" || reclamo == "jocker") {
-                            // Capitalizar la primera letra para que coincida con el mazo
-                            reclamo[0] = toupper(reclamo[0]);
-                            break;
-                        } else {
-                            cout << "Reclamo invalido. Por favor, ingrese Rey, Reina, As o Jocker.\n";
-                        }
+                string claim;
+                cout << "¿Qué carta reclamas tirar (Rey, Reina, As, Jocker)? ";
+                cin >> claim;
+
+                string actual_card_thrown = "";
+                cout << names[turn] << ", ¿qué carta REALMENTE tiras de tu mano?: ";
+                cin >> actual_card_thrown;
+
+                removeCards(hands[turn], CARDS_PER_PLAYER, actual_card_thrown, 1);
+
+                for (int j = 0; j < numPlayers; j++)
+                {
+                    if (j == turn) continue;
+                    cout << names[j] << ", estas son tus cartas:" << endl;
+                    showHand(hands[j], CARDS_PER_PLAYER);
+                    cout << names[j] << ", ¿quieres tirar una carta como '" << claim << "'? (S/N): ";
+                    char throw_response;
+                    cin >> throw_response;
+                    if (throw_response == 'S' || throw_response == 's')
+                    {
+                        cout << names[j] << " ha tirado una carta." << endl;
+                    }
+                }
+
+                char response;
+                int accusingPlayer;
+                int accusedPlayer;
+
+                cout << "Alguien quiere acusar? (S/N): ";
+                cin >> response;
+
+                while (response != 's' && response != 'S' && response != 'n' && response != 'N')
+                {
+                    cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
+                    cin >> response;
+                }
+
+                system("cls");
+
+                if (response == 's' || response == 'S')
+                {
+                    cout << "Seleccione su nombre de jugador:" << endl;
+                    for (int i = 0; i < numPlayers; i++)
+                    {
+                        cout << i + 1 << ". " << names[i] << endl;
+                    }
+                    cin >> accusingPlayer;
+                    accusingPlayer--;
+                    system("cls");
+
+                    while (accusingPlayer < 0 || accusingPlayer >= numPlayers)
+                    {
+                        system("cls");
+                        cout << "Seleccione un jugador valido" << endl;
+                         for (int i = 0; i < numPlayers; i++)
+                    {
+                        cout << i + 1 << ". " << names[i] << endl;
+                    }
+                        cin >> accusingPlayer;
+                        accusingPlayer--;
                     }
 
-                    string carta_real_tirada_por_turno = ""; // Variable para guardar la carta real tirada.
-                    int cantidad_tirar = 0;
+                    system("cls");
 
-                    // Pedir al jugador en turno qué carta quiere tirar realmente y cuántas.
-                    // Bucle para validar la carta real tirada y la cantidad
-                    while (true) {
-                        cout << nombres[turno] << ", ¿que carta REALMENTE tiras de tu mano?: ";
-                        cin >> carta_real_tirada_por_turno;
-                        transform(carta_real_tirada_por_turno.begin(), carta_real_tirada_por_turno.begin() + 1, carta_real_tirada_por_turno.begin(), ::toupper); // Capitalizar la primera letra
-
-                        int cartasDisponibles = contarCarta(manos[turno], CARTAS_POR_JUGADOR, carta_real_tirada_por_turno);
-                        if (cartasDisponibles == 0) {
-                            cout << "No tienes esa carta en tu mano. Por favor, elige una carta que tengas.\n";
-                            continue;
-                        }
-
-                        cout << "¿Cuantas cartas de '" << carta_real_tirada_por_turno << "' quieres tirar (1-" << cartasDisponibles << ")? ";
-                        cin >> cantidad_tirar;
-
-                        if (cantidad_tirar >= 1 && cantidad_tirar <= cartasDisponibles) {
-                            break;
-                        } else {
-                            cout << "Cantidad invalida. Debes tirar entre 1 y " << cartasDisponibles << " cartas de ese tipo.\n";
+                    cout << "¿A qué jugador deseas delatar?" << endl;
+                    for (int i = 0; i < numPlayers; i++)
+                    {
+                        if (i != accusingPlayer)
+                        {
+                            cout << i + 1 << ". " << names[i] << endl;
                         }
                     }
+                    cin >> accusedPlayer;
+                    accusedPlayer--;
 
-                    // Eliminar la carta tirada de la mano del jugador en turno.
-                    eliminarCartas(manos[turno], CARTAS_POR_JUGADOR, carta_real_tirada_por_turno, cantidad_tirar);
-
-                    cout << nombres[turno] << " ha tirado " << cantidad_tirar << " carta(s) y reclamado que eran: " << reclamo << endl;
-
-
-                    // Los demás jugadores tiran UNA CARTA (pueden mentir)
-                    // Este bloque se simplifica ya que el juego original solo se enfoca en el jugador principal
-                    // y la creencia de los demás jugadores, no en lo que tiran individualmente.
-                    // Si se quisiera implementar que los demás tiran y se puede delatar a cualquiera,
-                    // se necesitaría un registro de lo que cada uno "declaró tirar" y "tiró realmente".
-                    cout << "\nLos demas jugadores estan tirando sus cartas...\n";
-                    // En esta versión, los demás jugadores no "tiran" cartas de sus manos.
-                    // Solo el jugador en turno tira una carta real. Los demás reaccionan al reclamo.
-
-
-                    // Espacio para probar la funcion de delatar a un jugador mentiroso
-                    char respuesta_acusar;
-                    int jugador_que_delata_index = -1; // Inicializar con un valor que indique que no se ha elegido
-                    int jugador_delatado_index = turno; // Por defecto, se delata al jugador en turno
-
-                    cout << "\n¿Alguien quiere acusar al jugador " << nombres[turno] << " de mentiroso? (S/N): ";
-                    cin >> respuesta_acusar;
-
-                    while (respuesta_acusar != 's' && respuesta_acusar != 'S' && respuesta_acusar != 'n' && respuesta_acusar != 'N') {
-                        cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
-                        cin >> respuesta_acusar;
-                    }
-
-                    system("cls"); // cls
-
-                    if (respuesta_acusar == 's' || respuesta_acusar == 'S') {
-                        cout << "Seleccione su nombre de jugador para acusar:" << endl;
-                        for (int i = 0; i < numJugadores; i++) {
-                            if (i != turno) { // No se puede acusar a sí mismo
-                                cout << i + 1 << ". " << nombres[i] << endl;
+                    while (accusedPlayer < 0 || accusedPlayer >= numPlayers || accusedPlayer == accusingPlayer)
+                    {
+                        if (accusedPlayer == accusingPlayer)
+                        {
+                            cout << "No te puedes delatar a ti mismo" << endl;
+                        }
+                        cout << "Seleccione un jugador valido" << endl;
+                        for (int i = 0; i < numPlayers; i++)
+                        {
+                            if (i != accusingPlayer)
+                            {
+                                cout << i + 1 << ". " << names[i] << endl;
                             }
                         }
-                        cin >> jugador_que_delata_index;
-                        jugador_que_delata_index--; // Ajustar índice.
+                        cin >> accusedPlayer;
+                        accusedPlayer--;
+                    }
 
-                        while (jugador_que_delata_index < 0 || jugador_que_delata_index >= numJugadores || jugador_que_delata_index == turno) {
-                            if (jugador_que_delata_index == turno) {
-                                cout << "No puedes delatarte a ti mismo. ";
-                            }
-                            cout << "Seleccione un jugador valido para acusar: ";
-                            cin >> jugador_que_delata_index;
-                            jugador_que_delata_index--;
-                        }
+                    system("cls");
 
-                        system("cls"); // cls
-
-                        // Proceso en el que se comprueba si la acusacion es verdadera
-                        cout << nombres[jugador_que_delata_index] << " ha acusado a " << nombres[jugador_delatado_index] << " de mentiroso." << endl;
-                        cout << nombres[jugador_delatado_index] << " dijo que tiro la carta: '" << reclamo << "'" << endl;
-                        cout << "Y REALMENTE tiro la carta: '" << carta_real_tirada_por_turno << "'" << endl;
+                    cout << "El jugador " << names[accusingPlayer] << " ha acusado a " << names[accusedPlayer] << " de mentiroso." << endl;
+                    cout << names[accusedPlayer] << " dijo que tiró la carta: '" << claim << "'" << endl;
+                    cout << "Y REALMENTE tiró la carta: '" << actual_card_thrown << "'" << endl;
 
                         // Lógica de VERIFICACIÓN (basada en el reclamo y la carta real tirada por el jugador en turno)
                         bool esMentira = (reclamo != carta_real_tirada_por_turno);
