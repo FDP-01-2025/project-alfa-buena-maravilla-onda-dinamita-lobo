@@ -1,6 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/mi1WNrHU)
-# The Table of Liars
-
+# 🎮 The Table of Liars
+# Temática y ambientación
+The Table of Liars es un juego de cartas con una temática de engaño, sospecha y estrategia. Ambientado en una mesa ficticia, los jugadores deben engañar a los demás o descubrir quién está mintiendo. Cada ronda se basa en la habilidad de los jugadores para aparentar, acusar o defenderse en un entorno controlado donde a al tirar sus cartas estyos deben asegurarse de convencer a los demas de que su carta es la correcta.
 ## Description
 "The Liars' Table." This game can be played by 2 to 4 players, and each player will be dealt 5 cards.
 The deck may include Kings, Queens, Aces, and one single Joker, all shuffled and distributed randomly. The table (or a player, following a turn order) will 
@@ -15,6 +16,33 @@ The game will be implemented in C++, using:
 -Functions
 -Arrays
 -Control structures like if, else, while, do-while, for, and switch.
+# Mecánica principal
+-De 2 a 4 jugadores reciben 5 cartas aleatorias.
+-El mazo incluye Reyes (King), Reinas (Queen), Ases (Ace) y un único Joker.
+-Un jugador o la “mesa” solicita una carta específica.
+-Los jugadores deben colocar entre 1 y 3 cartas boca abajo.
+-Los demás jugadores pueden acusar al jugador activo de mentir.
+-Se verifica si el jugador puso al menos una carta del tipo solicitado:
+-Si sí tiene, el acusador pierde.
+-Si no tiene, el jugador activo pierde.
+-Quien pierde la ronda queda fuera temporalmente y debe realizar un reto o castigo.
+# Idea general de la jugabilidad
+El objetivo es mantenerse en juego el mayor tiempo posible, utilizando estrategia y engaño para sobrevivir a cada ronda. El juego se reinicia con una nueva mano de cartas cada ronda, y se elimina temporalmente a un jugador tras cada pérdida. El último jugador en pie es el ganador.
+# Aplicación de los temas vistos (uno por uno con ejemplos)
+# Consideraciones técnicas del desarrollo
+-Lenguaje de programación: C++
+-Editor usado: Visutal studio code
+-Compilador: g++
+-Librerias usadas:
+  -#include <iostream>:
+  -#include <string>:
+  -#include <cstdlib>: 
+  -#include <vector>:
+  -#include <windows.h>: 
+  -#include <ctime>:
+-El juego funciona por consola o tambien llamada terminar, no necesita una interfaz grafica.
+# Imágenes o mockups del juego
+
 ## **Developer team name:**
 - project alfa buena maravilla onda dinamita lobo
 ### **Team members' names:**
