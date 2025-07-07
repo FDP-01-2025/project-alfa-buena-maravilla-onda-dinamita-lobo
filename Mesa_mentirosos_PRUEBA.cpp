@@ -353,7 +353,8 @@ int main()
 
                     // Asegurarse de que el turno actual sea de un jugador activo y con cartas
                     // --- INICIO DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
-                
+                int jugadorActual = turno; // Guardamos el turno actual
+                bool siguienteJugadorEncontrado = false;
                 
 
                     system("cls"); // Limpiar pantalla para un turno más limpio
