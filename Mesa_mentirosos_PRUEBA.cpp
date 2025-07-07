@@ -355,7 +355,54 @@ int main()
                     // --- INICIO DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
                 int jugadorActual = turno; // Guardamos el turno actual
                 bool siguienteJugadorEncontrado = false;
+                int contadorIntentosBusqueda = 0; // Para evitar bucles infinitos si no hay jugadores
+
+                while (!siguienteJugadorEncontrado && contadorIntentosBusqueda < numJugadores) {
+                    // Mover al siguiente jugador para la verificación
+                    jugadorActual = (jugadorActual + 1) % numJugadores;
+
+                    int cartasRestantesActual = 0;
+                    for (int k = 0; k < CARTAS_POR_JUGADOR; ++k) {
+                        if (manos[jugadorActual][k] != "") {
+                            cartasRestantesActual++;
+                        }
+                    }
+
+                    if (turnosPerdidos[jugadorActual]) {
+                        cout << "\n¡" << nombres[jugadorActual] << " pierde su turno por haber acusado o mentido incorrectamente!\n";
+                        turnosPerdidos[jugadorActual] = false; // El turno perdido solo dura una ronda.
+                    } else if (cartasRestantesActual == 0) {
+                         cout << "\n" << nombres[jugadorActual] << " no tiene mas cartas. Saltando su turno.\n";
+                    } else {
+                        // ¡Se encontró un jugador válido!
+                        turno = jugadorActual; // Actualizamos el turno al jugador válido
+                        siguienteJugadorEncontrado = true;
+                    }
+                    contadorIntentosBusqueda++;
+                }
+
+                if (!siguienteJugadorEncontrado) {
+                    cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar con cartas o turnos activos.\n";
+                    juegoActivo = false;
+                    break;
+                }
+                // --- FIN DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
+
+                system("cls"); // Limpiar pantalla para un turno más limpio
+
+                cout << "\n=========================================\n";
+                cout << "Turno de " << nombres[turno] << endl;
+                cout << "Tus cartas: " << endl;
+                mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
+
                 
+
+                    // Si después de intentar todos los jugadores, no se encuentra un jugador válido
+                    if (contadorIntentosBusqueda == numJugadores) {
+                        cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar.\n";
+                        juegoActivo = false;
+                        break;
+                    }
 
                     system("cls"); // Limpiar pantalla para un turno más limpio
 
