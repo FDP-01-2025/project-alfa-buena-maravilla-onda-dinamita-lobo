@@ -77,6 +77,7 @@ The main goal is to stay in the game as long as possible using strategy and dece
 The deck is represented as an array of strings with the following cards:
 ![image](https://github.com/user-attachments/assets/fe7ef5f6-ce9a-414e-a13b-19b165ea9837)
 
+
 *ASCII Art Rendering*
 ![image](https://github.com/user-attachments/assets/62a6a839-5c6c-40d0-8185-b07f93bb2703)
 Each card is drawn with a unique ASCII art style using a vector<string> in the function obtenerCartaASCII. Cards are printed horizontally using the mostrarMano() function.
