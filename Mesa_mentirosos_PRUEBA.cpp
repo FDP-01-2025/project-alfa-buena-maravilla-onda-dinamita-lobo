@@ -93,9 +93,9 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("┌───────┐");
         ascii_art.push_back("│ JKR   │");
         ascii_art.push_back("│   ♣   │");
-        ascii_art.push_back("│  _^_  │");
+        ascii_art.push_back("│   _^_ │");
         ascii_art.push_back("│ |o_o| │");
-        ascii_art.push_back("│  \\_/  │");
+        ascii_art.push_back("│   \\_/ │");
         ascii_art.push_back("│   JKR │");
         ascii_art.push_back("└───────┘");
 
@@ -172,25 +172,28 @@ int contarCarta(string mano[], int tam, string carta)
 // cuando un jugador tire una carta, hacemos una funcion para que este elimine dicha carta
 void eliminarCartas(string mano[], int tam, string carta, int cantidad)
 {
-    for (int i = 0; i < tam && cantidad > 0; i++)
+    // Usamos un índice 'write_idx' para mantener un seguimiento de dónde colocar la próxima carta no eliminada.
+    int write_idx = 0;
+    for (int i = 0; i < tam; i++)
     {
-        if (mano[i] == carta)
+        // Si la carta actual NO es la que queremos eliminar O ya hemos eliminado la cantidad deseada,
+        // entonces la mantenemos en la mano.
+        if (mano[i] != carta || cantidad <= 0)
         {
-            mano[i] = ""; // Elimina la carta de la mano
+            mano[write_idx++] = mano[i];
+        }
+        else
+        {
+            // Si es la carta a eliminar y todavía necesitamos eliminar más,
+            // simplemente la "saltamos" (no la copiamos a write_idx) y decrementamos la cantidad.
             cantidad--;
         }
     }
-    // Después de eliminar, reorganizar la mano para que las cartas vacías queden al final
-    for (int i = 0; i < tam - 1; i++) {
-        if (mano[i] == "") {
-            for (int j = i + 1; j < tam; j++) {
-                if (mano[j] != "") {
-                    mano[i] = mano[j];
-                    mano[j] = "";
-                    break;
-                }
-            }
-        }
+
+    // Rellenar el resto de la mano con cadenas vacías para los espacios que quedaron libres.
+    for (int i = write_idx; i < tam; i++)
+    {
+        mano[i] = "";
     }
 }
 
@@ -283,6 +286,7 @@ int main()
         // Validación de entrada para el menú principal
         while (opcion < 1 || opcion > 3) {
             cout << "Opción inválida. Por favor, ingrese un número entre 1 y 3: ";
+            cout << "Ingrese una opcion: ";
             cin >> opcion;
         }
 
@@ -310,7 +314,7 @@ int main()
                 }
 
                 // pedimos los nombres de los jugadores para referirnos a ellos
-                cout << "Ingresa los nombres de los jugadores: " << endl;
+                cout << "Ingresa los nombres de los jugadores:" << endl;
                 for (int i = 0; i < numJugadores; i++) {
                     cout << "Jugador " << (i + 1) << ": ";
                     cin >> nombres[i];
@@ -323,86 +327,89 @@ int main()
 
                 // Reestablecer juegoActivo para la nueva partida
                 juegoActivo = true;
-                turno = 0;
+                turno = -1; // Se inicializa en -1 para que el primer (turno + 1) % numJugadores sea 0.
                 for(int i = 0; i < MAX_JUGADORES; ++i) {
                     turnosPerdidos[i] = false;
                 }
 
                 // iniciamos el juego
-                int jugadoresActivos = numJugadores;
                 while (juegoActivo) {
-                    // Contar jugadores con cartas
+                    // --- LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
+                    int siguienteTurnoValido = -1;
+                    int intentosParaEncontrarTurno = 0;
                     int jugadoresConCartas = 0;
+                    int cartasEnManoTotal = 0;
+
+                    // Contar jugadores con cartas y total de cartas en juego
                     for (int i = 0; i < numJugadores; ++i) {
-                        int cartasRestantes = 0;
+                        int cartasActuales = 0;
                         for (int j = 0; j < CARTAS_POR_JUGADOR; ++j) {
                             if (manos[i][j] != "") {
-                                cartasRestantes++;
+                                cartasActuales++;
                             }
                         }
-                        if (cartasRestantes > 0) {
+                        if (cartasActuales > 0) {
                             jugadoresConCartas++;
+                            cartasEnManoTotal += cartasActuales;
                         }
                     }
 
-                    if (jugadoresConCartas < 2) {
-                        cout << "\n¡El juego ha terminado! No hay suficientes jugadores con cartas para continuar.\n";
+                    // Si solo queda un jugador con cartas, ese es el ganador.
+                    if (jugadoresConCartas == 1 && cartasEnManoTotal > 0) {
+                        for (int i = 0; i < numJugadores; ++i) {
+                            int cartasActuales = 0;
+                            for (int j = 0; j < CARTAS_POR_JUGADOR; ++j) {
+                                if (manos[i][j] != "") {
+                                    cartasActuales++;
+                                }
+                            }
+                            if (cartasActuales > 0) {
+                                cout << "\n¡Felicidades, " << nombres[i] << " es el ultimo jugador con cartas y ha ganado la ronda!\n";
+                                guardar_puntuacion(nombres[i]);
+                                juegoActivo = false;
+                                break;
+                            }
+                        }
+                        break; // Salir del bucle principal del juego
+                    } else if (jugadoresConCartas < 2 && cartasEnManoTotal == 0) {
+                        // Si no quedan jugadores con cartas, el juego termina sin un ganador por cartas.
+                        cout << "\n¡El juego ha terminado! No quedan cartas en juego ni jugadores activos.\n";
                         juegoActivo = false;
-                        break;
+                        break; // Salir del bucle principal del juego
                     }
 
-                    // Asegurarse de que el turno actual sea de un jugador activo y con cartas
-                    // --- INICIO DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
-                int jugadorActual = turno; // Guardamos el turno actual
-                bool siguienteJugadorEncontrado = false;
-                int contadorIntentosBusqueda = 0; // Para evitar bucles infinitos si no hay jugadores
 
-                while (!siguienteJugadorEncontrado && contadorIntentosBusqueda < numJugadores) {
-                    // Mover al siguiente jugador para la verificación
-                    jugadorActual = (jugadorActual + 1) % numJugadores;
+                    // Buscar el próximo jugador que no haya perdido su turno y tenga cartas
+                    do {
+                        turno = (turno + 1) % numJugadores; // Avanza al siguiente jugador
+                        intentosParaEncontrarTurno++;
 
-                    int cartasRestantesActual = 0;
-                    for (int k = 0; k < CARTAS_POR_JUGADOR; ++k) {
-                        if (manos[jugadorActual][k] != "") {
-                            cartasRestantesActual++;
+                        int cartasActivas = 0;
+                        for (int k = 0; k < CARTAS_POR_JUGADOR; ++k) {
+                            if (manos[turno][k] != "") {
+                                cartasActivas++;
+                            }
                         }
-                    }
 
-                    if (turnosPerdidos[jugadorActual]) {
-                        cout << "\n¡" << nombres[jugadorActual] << " pierde su turno por haber acusado o mentido incorrectamente!\n";
-                        turnosPerdidos[jugadorActual] = false; // El turno perdido solo dura una ronda.
-                    } else if (cartasRestantesActual == 0) {
-                         cout << "\n" << nombres[jugadorActual] << " no tiene mas cartas. Saltando su turno.\n";
-                    } else {
-                        // ¡Se encontró un jugador válido!
-                        turno = jugadorActual; // Actualizamos el turno al jugador válido
-                        siguienteJugadorEncontrado = true;
-                    }
-                    contadorIntentosBusqueda++;
-                }
+                        if (turnosPerdidos[turno]) {
+                            cout << "\n¡" << nombres[turno] << " pierde su turno por haber acusado o mentido incorrectamente!\n";
+                            turnosPerdidos[turno] = false; // El turno perdido solo dura una ronda.
+                        } else if (cartasActivas == 0) {
+                            cout << "\n" << nombres[turno] << " no tiene mas cartas. Saltando su turno.\n";
+                        } else {
+                            siguienteTurnoValido = turno; // Encontramos un jugador válido
+                        }
+                    } while (siguienteTurnoValido == -1 && intentosParaEncontrarTurno < numJugadores);
 
-                if (!siguienteJugadorEncontrado) {
-                    cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar con cartas o turnos activos. \n";
-                    juegoActivo = false;
-                    break;
-                }
-                // --- FIN DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
-
-                system("cls"); // Limpiar pantalla para un turno más limpio
-
-                cout << "\n=========================================\n";
-                cout << "Turno de " << nombres[turno] << endl;
-                cout << "Tus cartas: " << endl;
-                mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
-
-                
-
-                    // Si después de intentar todos los jugadores, no se encuentra un jugador válido
-                    if (contadorIntentosBusqueda == numJugadores) {
+                    // Si después de revisar a todos los jugadores, no se encontró un turno válido, el juego termina.
+                    if (siguienteTurnoValido == -1) {
                         cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar.\n";
                         juegoActivo = false;
-                        break;
+                        break; // Salir del bucle principal del juego
                     }
+                    // Asignar el turno al jugador válido encontrado
+                    turno = siguienteTurnoValido;
+                    // --- FIN DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
 
                     system("cls"); // Limpiar pantalla para un turno más limpio
 
@@ -539,9 +546,6 @@ int main()
                         cout << "\n¡Felicidades, " << nombres[turno] << " se ha quedado sin cartas y ha ganado la ronda!\n";
                         guardar_puntuacion(nombres[turno]); // Guardar puntuación al ganar
                         juegoActivo = false; // Terminar la ronda
-                    } else {
-                        // Se avanza al siguiente turno.
-                        turno = (turno + 1) % numJugadores;
                     }
 
                     cout << "\nPresione Enter para continuar al siguiente turno o al menu principal...\n";
