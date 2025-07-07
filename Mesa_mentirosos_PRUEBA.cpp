@@ -215,7 +215,7 @@ void cargar_tabla_de_puntos() {
         }
         tabla_puntos.close();
     } else {
-        cout << "No se pudo cargar la tabla de puntuaciones. ¡Juega para empezar a registrar!\n";
+        cout << "No se pudo cargar la tabla de puntuaciones. ¡Juega para ya empezar a registrar!\n";
     }
 }
 
