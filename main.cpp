@@ -1,118 +1,339 @@
-//Incorporación del archivo def.cpp
-#include "src/header.h"
+/*Desarrollaremos un juego, llamado la mesa de los mentirosos, este juego puede
+ser de 2-4 jugadores los cuales se les repartiran 4 cartas a cada uno de ellos,
+en el mazo pueden haber reyes reinas, As y un solo joacker, repartidas las cartas
+de manera aleatoria, la mesa (o un jugador siguiendo un orden), reclamaran a la
+mesa una carta (sea rey, reina, As o joacker), y todos tendran que entregar
+cartas sea 1-2-3, pero no 4 ni 5, una vez tiradas los jugadores podran decidir
+si creerle a el jugador o dudar y declararlo MENTIROSO, si el que tiro tiene
+cartas de las que se reclamaron, el reclamador queda como emntiroso y pierde,
+asi de manera contraria si el tirador no tiene cartas de las que se reclamo y
+tiro, queda como mentiroso y pierde, luego se regresaran las cartas se volveran
+a barajear y se repartiran, sin el jugador que perdio esta vez, este teniendo
+que cumplir un castigo o reto.*/
 
-int main () {
+#include <iostream>
+#include "./src/def.cpp"
+
+int main()
+{
+    system("cls");
+    // Establece la codificación de la consola a UTF-8 para que los caracteres especiales se muestren correctamente.
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
     srand(time(0));
-    int numPlayers;
-    bool gameActive = true;
-    int turn = 0;
-    char response;
-    int accusingPlayer;
-    int accusedPlayer;
-    string names[MAX_PLAYERS];
-    string hands[MAX_PLAYERS][CARDS_PER_PLAYER];
+    int opcion = 0;
+    int numJugadores;
+    bool juegoActivo = true;
+    int turno = 0;
+    string nombres[MAX_JUGADORES];
+    string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR];
+    // Array para rastrear los turnos perdidos.
+    bool turnosPerdidos[MAX_JUGADORES] = {false};
 
-    // damos la bienvenida a los usuarios , con código ascii para que sea bonito también
-    cout << "╔══════════════════════════════════════════════════════╗\n";
-    cout << "║        Bienvenido a la mesa de los mentirosos!       ║\n";
-    cout << "╚══════════════════════════════════════════════════════╝\n";
-    cout << "El mazo de cartas contiene: Rey, Reina, As y Jocker.\n";
-    cout << "Cada jugador recibira 5 cartas al inicio del juego.\n";
-    cout << "El juego comenzara con un jugador reclamando una carta, los demas jugadores podran ingresar que cartas de su mano quieren tirar.\n";
-    cout << "Si el jugador que reclama tiene 3 cartas de la que reclamo, gana, si no, pierde.\n";
-    cout << "El juego continuara hasta que un jugador se quede sin cartas o nunca mienta.\n";
-    cout << "Presione Enter para comenzar el juego..." << endl;
-    cin.ignore();
 
-    // los jugadores no pueden ser menos de 2 por lo que preguntamos y de una comprobamos
-    cout << "Cuantos jugadores participaran en el juego? (2-4 jugadores): ";
-    cin >> numPlayers;
-    while (numPlayers < 2 || numPlayers > 4) {
-        cout << "Numero de jugadores invalido. Por favor ingrese un numero entre 2 y 4: ";
-        cin >> numPlayers;
-    }
+    do { //do
+        cout << "\n=========================================\n";
+        cout << "Bienvenido al juego: 'La Mesa de los Mentirosos'\n";
+        cout << "=========================================\n";
+        cout << " 1. Jugar\n 2. Tabla de puntuaciones\n 3. Salir\n";
+        cout << "Ingrese una opcion: ";
+        cin >> opcion;
+        system("cls");
 
-    // pedimos los nombres de los jugadores para referirnos a ellos 
-    cout << "Ingresa los nombres de los jugadores:" << endl;
-    for (int i = 0; i < numPlayers; i++) {
-        cout << "Jugador " << (i + 1) << ": ";
-        cin >> names[i];
-    }
-
-    // llamamos las funciones para barajar y repartir
-    shuffleDeck(deck, TOTAL_CARDS);
-    dealCards(hands, numPlayers, deck);
-
-    // iniciamos el juego
-    while (gameActive) {
-        cout << "\n═══════════════════════════════════════════════════════\n";
-        cout << "Turno de " << names[turn] << endl;
-        cout << "Tus cartas: " << endl;
-        showHand(hands[turn], CARDS_PER_PLAYER);
-
-        // Reclamar carta
-        string claim;
-        cout << "¿Qué carta reclamas (Rey, Reina, As, Jocker)? ";
-        cin >> claim;
-
-        // Los demás jugadores tiran cartas (pueden mentir)
-        for (int j = 0; j < numPlayers; j++) {
-            if (j == turn) continue;
-            cout << names[j] << ", estas son tus cartas:" << endl;
-            showHand(hands[j], CARDS_PER_PLAYER);
-            cout << names[j] << ", ¿cuántas cartas quieres tirar como '" << claim << "'? ";
-            int quantity;
-            cin >> quantity;
-            removeCards(hands[j], CARDS_PER_PLAYER, claim, quantity);
-        }
-
-        // Espacio para probar la función de delatar un jugador mentiroso
-        cout << "¿Alguien quiere acusar? (S/N)" << endl;
-        cin >> response;
-
-        while (response != 's' && response != 'S' && response != 'n' && response != 'N') {
-            cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
-            cin >> response;
-            system("cls"); // limpiar consola
-        }
-
-        if (response == 's' || response == 'S') {
-            cout << "Seleccione su nombre de jugador" << endl;
-            for (int i = 0; i < numPlayers; i++) {
-                cout << i + 1 << ". " << names[i] << endl;
-            }
-            cin >> accusingPlayer;
+        // Validación de entrada para el menú principal
+        while (opcion < 1 || opcion > 3) {
+            cout << "\n=========================================\n";
+            cout << "Bienvenido al juego: 'La Mesa de los Mentirosos'\n";
+            cout << "=========================================\n";
+            cout << " 1. Jugar\n 2. Tabla de puntuaciones\n 3. Salir\n";
+            cout << "Ingrese una opcion corecta: ";
+            cin >> opcion;
             system("cls");
-
-            while (accusingPlayer < 1 || accusingPlayer > numPlayers) {
-                system("cls");
-                cout << "Seleccione un jugador valido" << endl;
-                cin >> accusingPlayer;
-            }
-            system("cls");
-
-            // Jugadores a delatar
-            cout << "¿A qué jugador deseas delatar?" << endl;
-            for (int i = 0; i < numPlayers; i++) {
-                cout << i + 1 << ". " << names[i] << endl;
-            }
-            cin >> accusedPlayer;
-
-            while (accusedPlayer < 1 || accusedPlayer > numPlayers || accusedPlayer == accusingPlayer) {
-                if (accusedPlayer == accusingPlayer) {
-                    cout << "No te puedes delatar a ti mismo" << endl;
-                }
-                cout << "Seleccione un jugador valido" << endl;
-                for (int i = 0; i < numPlayers; i++) {
-                    cout << i + 1 << ". " << names[i] << endl;
-                }
-                cin >> accusedPlayer;
-            }
-
-            // Proceso en el que se comprueba si la acusación es verdadera
-            cout << "El jugador " << names[accusingPlayer - 1] << " ha acusado a " << names[accusedPlayer - 1] << " de mentiroso." << endl;
         }
-    }
+
+        switch (opcion) {
+            case 1: { // Se utiliza un bloque para la declaración de variables dentro del case
+                cout << "\n";
+                cout << " || Bienvenido a la mesa de los mentirosos! ||\n";
+                cout << "\n";
+                cout << "El mazo de cartas contiene: Rey, Reina, As y Jocker (4 de cada uno).\n";
+                cout << "Cada jugador recibira 4 cartas al inicio del juego.\n";
+                cout << "En tu turno, reclamaras una carta y decidiras cual tirar realmente. Los demas jugadores podran tirar una carta (pueden mentir).\n";
+                cout << "Cualquier jugador puede acusar a otro de mentiroso. Si la acusacion es correcta, el mentiroso pierde el siguiente turno. Si es incorrecta, el acusador pierde el siguiente turno.\n";
+                cout << "El juego termina cuando un jugador se queda sin cartas o no hay mas jugadores activos.\n";
+                cout << "Presione Enter para comenzar el juego..." << endl;
+                cin.ignore(); // Limpiar el buffer de entrada
+                cin.get();    // Esperar a que el usuario presione Enter
+                system("cls"); // Borra la consola
+
+                // Número de jugadores
+                cout << "¿Cuantos jugadores participaran en el juego? (2-4 jugadores): ";
+                cin >> numJugadores;
+                system("cls"); // Borra la consola
+
+                while (numJugadores < 2 || numJugadores > MAX_JUGADORES) {
+                    cout << "Numero de jugadores invalido. Por favor ingrese un numero entre 2 y 4: ";
+                    cin >> numJugadores;
+                    system("cls"); // Borra la consola
+                }
+
+                // pedimos los nombres de los jugadores para referirnos a ellos
+                cout << "Ingresa los nombres de los jugadores:" << endl;
+                for (int i = 0; i < numJugadores; i++) {
+                    cout << "Jugador " << (i + 1) << ": ";
+                    cin >> nombres[i];
+                }
+
+                // llamamos las funciones para abrajear y repartir
+                // Barajar y repartir cartas
+                barajarMazo(mazo, TOTAL_CARTAS);
+                repartirCartas(manos, numJugadores, mazo);
+
+                // Reestablecer juegoActivo para la nueva partida
+                juegoActivo = true;
+                turno = -1; // Se inicializa en -1 para que el primer (turno + 1) % numJugadores sea 0.
+                for(int i = 0; i < MAX_JUGADORES; ++i) {
+                    turnosPerdidos[i] = false;
+                }
+
+                // iniciamos el juego
+                while (juegoActivo) {
+                    // --- LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
+                    int siguienteTurnoValido = -1;
+                    int intentosParaEncontrarTurno = 0;
+                    int jugadoresConCartas = 0;
+                    int cartasEnManoTotal = 0;
+
+                    // Contar jugadores con cartas y total de cartas en juego
+                    for (int i = 0; i < numJugadores; ++i) {
+                        int cartasActuales = 0;
+                        for (int j = 0; j < CARTAS_POR_JUGADOR; ++j) {
+                            if (manos[i][j] != "") {
+                                cartasActuales++;
+                            }
+                        }
+                        if (cartasActuales > 0) {
+                            jugadoresConCartas++;
+                            cartasEnManoTotal += cartasActuales;
+                        }
+                    }
+
+                    // Si solo queda un jugador con cartas, ese es el ganador.
+                    if (jugadoresConCartas == 1 && cartasEnManoTotal > 0) {
+                        for (int i = 0; i < numJugadores; ++i) {
+                            int cartasActuales = 0;
+                            for (int j = 0; j < CARTAS_POR_JUGADOR; ++j) {
+                                if (manos[i][j] != "") {
+                                    cartasActuales++;
+                                }
+                            }
+                            if (cartasActuales > 0) {
+                                cout << "\n¡Felicidades, " << nombres[i] << " es el ultimo jugador con cartas y ha ganado la ronda!\n";
+                                guardar_puntuacion(nombres[i]);
+                                juegoActivo = false;
+                                break;
+                            }
+                        }
+                        break; // Salir del bucle principal del juego
+                    } else if (jugadoresConCartas < 2 && cartasEnManoTotal == 0) {
+                        // Si no quedan jugadores con cartas, el juego termina sin un ganador por cartas.
+                        cout << "\n¡El juego ha terminado! No quedan cartas en juego ni jugadores activos.\n";
+                        juegoActivo = false;
+                        break; // Salir del bucle principal del juego
+                    }
+
+
+                    // Buscar el próximo jugador que no haya perdido su turno y tenga cartas
+                    do {
+                        turno = (turno + 1) % numJugadores; // Avanza al siguiente jugador
+                        intentosParaEncontrarTurno++;
+
+                        int cartasActivas = 0;
+                        for (int k = 0; k < CARTAS_POR_JUGADOR; ++k) {
+                            if (manos[turno][k] != "") {
+                                cartasActivas++;
+                            }
+                        }
+
+                        if (turnosPerdidos[turno]) {
+                            cout << "\n¡" << nombres[turno] << " pierde su turno por haber acusado o mentido incorrectamente!\n";
+                            turnosPerdidos[turno] = false; // El turno perdido solo dura una ronda.
+                        } else if (cartasActivas == 0) {
+                            cout << "\n" << nombres[turno] << " no tiene mas cartas. Saltando su turno.\n";
+                        } else {
+                            siguienteTurnoValido = turno; // Encontramos un jugador válido
+                        }
+                    } while (siguienteTurnoValido == -1 && intentosParaEncontrarTurno < numJugadores);
+
+                    // Si después de revisar a todos los jugadores, no se encontró un turno válido, el juego termina.
+                    if (siguienteTurnoValido == -1) {
+                        cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar.\n";
+                        juegoActivo = false;
+                        break; // Salir del bucle principal del juego
+                    }
+                    // Asignar el turno al jugador válido encontrado
+                    turno = siguienteTurnoValido;
+                    // --- FIN DE LA LÓGICA DE BÚSQUEDA DEL SIGUIENTE JUGADOR VÁLIDO ---
+
+                    system("cls"); // Limpiar pantalla para un turno más limpio
+
+                    cout << "\n=========================================\n";
+                    cout << "Turno de " << nombres[turno] << endl;
+                    cout << "Tus cartas: " << endl;
+                    mostrarMano(manos[turno], CARTAS_POR_JUGADOR);
+
+                    // Reclamar carta (la carta que el jugador en turno dice que va a tirar)
+                    string reclamo;
+                    // Bucle para validar la entrada del reclamo
+                    while (true) {
+                        cout << "¿Que carta reclamas tirar (Rey, Reina, As, Jocker)? ";
+                        cin >> reclamo;
+                        // Convertir a minúsculas para una comparación insensible a mayúsculas
+                        transform(reclamo.begin(), reclamo.end(), reclamo.begin(), ::tolower);
+                        if (reclamo == "rey" || reclamo == "reina" || reclamo == "as" || reclamo == "jocker") {
+                            // Capitalizar la primera letra para que coincida con el mazo
+                            reclamo[0] = toupper(reclamo[0]);
+                            break;
+                        } else {
+                            cout << "Reclamo invalido. Por favor, ingrese Rey, Reina, As o Jocker.\n";
+                        }
+                    }
+
+                    string carta_real_tirada_por_turno = ""; // Variable para guardar la carta real tirada.
+                    int cantidad_tirar = 0;
+
+                    // Pedir al jugador en turno qué carta quiere tirar realmente y cuántas.
+                    // Bucle para validar la carta real tirada y la cantidad
+                    while (true) {
+                        cout << nombres[turno] << ", ¿que carta REALMENTE tiras de tu mano?: ";
+                        cin >> carta_real_tirada_por_turno;
+                        transform(carta_real_tirada_por_turno.begin(), carta_real_tirada_por_turno.begin() + 1, carta_real_tirada_por_turno.begin(), ::toupper); // Capitalizar la primera letra
+
+                        int cartasDisponibles = contarCarta(manos[turno], CARTAS_POR_JUGADOR, carta_real_tirada_por_turno);
+                        if (cartasDisponibles == 0) {
+                            cout << "No tienes esa carta en tu mano. Por favor, elige una carta que tengas.\n";
+                            continue;
+                        }
+
+                        cout << "¿Cuantas cartas de '" << carta_real_tirada_por_turno << "' quieres tirar (1-" << cartasDisponibles << ")? ";
+                        cin >> cantidad_tirar;
+
+                        if (cantidad_tirar >= 1 && cantidad_tirar <= cartasDisponibles) {
+                            break;
+                        } else {
+                            cout << "Cantidad invalida. Debes tirar entre 1 y " << cartasDisponibles << " cartas de ese tipo.\n";
+                        }
+                    }
+
+                    // Eliminar la carta tirada de la mano del jugador en turno.
+                    eliminarCartas(manos[turno], CARTAS_POR_JUGADOR, carta_real_tirada_por_turno, cantidad_tirar);
+
+                    cout << nombres[turno] << " ha tirado " << cantidad_tirar << " carta(s) y reclamado que eran: " << reclamo << endl;
+
+
+                    // Los demás jugadores tiran UNA CARTA (pueden mentir)
+                    // Este bloque se simplifica ya que el juego original solo se enfoca en el jugador principal
+                    // y la creencia de los demás jugadores, no en lo que tiran individualmente.
+                    // Si se quisiera implementar que los demás tiran y se puede delatar a cualquiera,
+                    // se necesitaría un registro de lo que cada uno "declaró tirar" y "tiró realmente".
+                    cout << "\nLos demas jugadores estan tirando sus cartas...\n";
+                    // En esta versión, los demás jugadores no "tiran" cartas de sus manos.
+                    // Solo el jugador en turno tira una carta real. Los demás reaccionan al reclamo.
+
+
+                    // Espacio para probar la funcion de delatar a un jugador mentiroso
+                    char respuesta_acusar;
+                    int jugador_que_delata_index = -1; // Inicializar con un valor que indique que no se ha elegido
+                    int jugador_delatado_index = turno; // Por defecto, se delata al jugador en turno
+
+                    cout << "\n¿Alguien quiere acusar al jugador " << nombres[turno] << " de mentiroso? (S/N): ";
+                    cin >> respuesta_acusar;
+
+                    while (respuesta_acusar != 's' && respuesta_acusar != 'S' && respuesta_acusar != 'n' && respuesta_acusar != 'N') {
+                        cout << "Has ingresado una respuesta incorrecta. Ingresa (S) o (N): ";
+                        cin >> respuesta_acusar;
+                    }
+
+                    system("cls"); // cls
+
+                    if (respuesta_acusar == 's' || respuesta_acusar == 'S') {
+                        cout << "Seleccione su nombre de jugador para acusar:" << endl;
+                        for (int i = 0; i < numJugadores; i++) {
+                            if (i != turno) { // No se puede acusar a sí mismo
+                                cout << i + 1 << ". " << nombres[i] << endl;
+                            }
+                        }
+                        cin >> jugador_que_delata_index;
+                        jugador_que_delata_index--; // Ajustar índice.
+
+                        while (jugador_que_delata_index < 0 || jugador_que_delata_index >= numJugadores || jugador_que_delata_index == turno) {
+                            if (jugador_que_delata_index == turno) {
+                                cout << "No puedes delatarte a ti mismo. ";
+                            }
+                            cout << "Seleccione un jugador valido para acusar: ";
+                            cin >> jugador_que_delata_index;
+                            jugador_que_delata_index--;
+                        }
+
+                        system("cls"); // cls
+
+                        // Proceso en el que se comprueba si la acusacion es verdadera
+                        cout << nombres[jugador_que_delata_index] << " ha acusado a " << nombres[jugador_delatado_index] << " de mentiroso." << endl;
+                        cout << nombres[jugador_delatado_index] << " dijo que tiro la carta: '" << reclamo << "'" << endl;
+                        cout << "Y REALMENTE tiro la carta: '" << carta_real_tirada_por_turno << "'" << endl;
+
+                        // Lógica de VERIFICACIÓN (basada en el reclamo y la carta real tirada por el jugador en turno)
+                        bool esMentira = (reclamo != carta_real_tirada_por_turno);
+
+                        if (esMentira) {
+                            // Acusador acertó, el jugador en turno MINTIÓ.
+                            cout << "\n¡Acusacion correcta! " << nombres[jugador_delatado_index] << " mintio." << endl;
+                            cout << nombres[jugador_delatado_index] << " pierde el siguiente turno." << endl;
+                            turnosPerdidos[jugador_delatado_index] = true;
+                        } else {
+                            // Acusador se equivocó, porque el jugador en turno SÍ dijo la verdad.
+                            cout << "\n¡Acusacion incorrecta! " << nombres[jugador_delatado_index] << " no mintio." << endl;
+                            cout << nombres[jugador_que_delata_index] << " pierde el siguiente turno." << endl;
+                            turnosPerdidos[jugador_que_delata_index] = true;
+                        }
+                    }
+
+                    // Verificar si el jugador actual se quedó sin cartas
+                    int cartasRestantesEnMano = 0;
+                    for (int k = 0; k < CARTAS_POR_JUGADOR; ++k) {
+                        if (manos[turno][k] != "") {
+                            cartasRestantesEnMano++;
+                        }
+                    }
+
+                    if (cartasRestantesEnMano == 0) {
+                        cout << "\n¡Felicidades, " << nombres[turno] << " se ha quedado sin cartas y ha ganado la ronda!\n";
+                        guardar_puntuacion(nombres[turno]); // Guardar puntuación al ganar
+                        juegoActivo = false; // Terminar la ronda
+                    }
+
+                    cout << "\nPresione Enter para continuar al siguiente turno o al menu principal...\n";
+                    cin.ignore();
+                    cin.get();
+                    system("cls"); // Borra la consola
+                } // Fin del while (juegoActivo)
+                break;
+            } // Fin case 1
+
+            case 2:
+                cargar_tabla_de_puntos();
+                cout << "\nPresione Enter para salir al menu principal..." << endl;
+                cin.ignore(); // Limpiar el buffer de entrada
+                cin.get();    // Esperar a que el usuario presione Enter
+                system("cls"); // Borra la consola
+                break;
+
+            case 3:
+                cout << "\n¡Gracias por jugar a La Mesa de los Mentirosos! Hasta pronto.\n";
+                break;
+        } // Fin switch menu principal
+    } while (opcion != 3);
 
     return 0;
 }
