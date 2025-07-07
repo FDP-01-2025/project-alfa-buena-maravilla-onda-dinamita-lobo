@@ -119,7 +119,12 @@ El uso de el if, else y else if fue muy ocupado en toda la logica de el juego ma
 ![image](https://github.com/user-attachments/assets/d5bd6eee-eb68-4f6e-aa30-a6f1061812e1)
 
 
-Tambien se le dio uso en la funcion de "Mostrar
+Tambien se le dio uso en la funcion de "show hand" en la que   ponemos una condicion en la que toma que todas las cartas tienen el mismo numero de lineas para la representacion de el arte ACII, 
+asi como para conficiones en ciclos for en la misma funcion, al igual que en funciones conmo " Count Card", "remove cards", "LoadScoreTable", "Save score" y en el string "deck" todo eso en el archivio def.cpp en la carpeta src:
+
+![image](https://github.com/user-attachments/assets/cab4b960-b7a9-4156-a420-6ee76d180943)
+
+
 # Uso de For 
 # Uso de los swich
 # Uso de while y do while
