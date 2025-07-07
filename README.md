@@ -16,7 +16,9 @@ The player who lost the round is temporarily removed from the next one and must 
 The game is implemented in C++, using:
 
   -Functions
+  
   -Arrays
+  
   -Control structures: if, else, while, do-while, for, and switch
 
 🕹️ Core Mechanics
