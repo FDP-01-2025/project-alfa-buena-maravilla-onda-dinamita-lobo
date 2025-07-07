@@ -74,9 +74,8 @@ The main goal is to stay in the game as long as possible using strategy and dece
   -guardar_puntuacion(nombre): Increments and saves a player’s win in the score file.
   
   *Deck Setup*
-The deck is represented as an array of strings with the following cards:
-![image](https://github.com/user-attachments/assets/fe7ef5f6-ce9a-414e-a13b-19b165ea9837)
-
+  ![image](https://github.com/user-attachments/assets/fe7ef5f6-ce9a-414e-a13b-19b165ea9837)
+The deck is represented as an array of strings with the following cards
 
 *ASCII Art Rendering*
 ![image](https://github.com/user-attachments/assets/62a6a839-5c6c-40d0-8185-b07f93bb2703)
