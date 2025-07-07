@@ -382,7 +382,7 @@ int main()
                 }
 
                 if (!siguienteJugadorEncontrado) {
-                    cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar con cartas o turnos activos.\n";
+                    cout << "\n¡El juego ha terminado! No hay jugadores disponibles para jugar con cartas o turnos activos. \n";
                     juegoActivo = false;
                     break;
                 }
