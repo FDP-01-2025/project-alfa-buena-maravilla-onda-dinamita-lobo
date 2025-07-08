@@ -319,8 +319,7 @@ if (juegoActivo && jugadoresConCartas == 0) {
                     }
 
                     cout << "\nPresione Enter para continuar al siguiente turno o al menu principal...\n";
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada para cin.get()
-                    cin.get();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada
                     system("cls"); // Borra la consola
                 } // Fin del while (juegoActivo)
                 break;
@@ -329,8 +328,7 @@ if (juegoActivo && jugadoresConCartas == 0) {
             case 2:
                 cargar_tabla_de_puntos();
                 cout << "\nPresione Enter para salir al menu principal..." << endl;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada para cin.get()
-                cin.get();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada
                 system("cls"); // Borra la consola
                 break;
 

@@ -168,14 +168,16 @@ struct puntos_jugadores {
 };
 
 void cargar_tabla_de_puntos() {
-    ifstream tabla_puntos("puntuaciones.txt"); // Nombre de archivo más descriptivo
-    puntos_jugadores puntos;
-
+    ifstream tabla_puntos("puntuaciones.txt");
+    
     if (tabla_puntos.is_open()) {
         cout << "\n--- Tabla de Puntuaciones ---\n";
-        cout << "Nombre ---------- Victorias \n";
-        while (tabla_puntos >> puntos.nombre >> puntos.victorias) {
-            cout << puntos.nombre << " ------------- " << puntos.victorias << endl;
+        cout << "Jugador          Victorias \n";
+        cout << "---------------------------\n";
+        
+        puntos_jugadores jugador;
+        while (tabla_puntos >> jugador.nombre >> jugador.victorias) {
+            cout << jugador.nombre << "                " << jugador.victorias << endl;
         }
         tabla_puntos.close();
     } else {
