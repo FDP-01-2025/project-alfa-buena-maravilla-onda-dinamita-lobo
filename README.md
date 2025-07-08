@@ -190,68 +190,105 @@ El switch es una estructura de control que se implementó durante el proyecto un
 El uso de estos bucles nos sirvió en gran medida para la validacion de respuestas y encerrar en un rango de opciones al jugardor.
 
 1.Primeramente el uso de do while, éste nos permitio hacer la ejecución del juego tantas veces el jugador lo desee, siempre y cuando este no ejecute la opcion 3 (salir).
+
 ![image](https://github.com/user-attachments/assets/f2fbde5d-7881-40bc-ba04-f4288cd06419)
+
+
 ![image](https://github.com/user-attachments/assets/a13b3efc-783b-4788-9fd4-63b5cae33f32)
 
 2. El uso de los while, como se comentaba antes, fue necesario para la validacion de respuestas y permitir la seleccion de opciones que nosotros ofrecemos al jugador.
+3. 
    ![image](https://github.com/user-attachments/assets/7220786b-f45c-4241-add0-ab66fd3d201a)
+
+   
    ![image](https://github.com/user-attachments/assets/459ed496-5482-4734-a1ea-a3f3ca1a88d9)
+
+   
    ![image](https://github.com/user-attachments/assets/1cfe0e00-f14a-46d4-8ac5-5a53001527b9)
+
+   
    ![image](https://github.com/user-attachments/assets/6fd06c73-ea19-4a94-a4f2-f59353e4558e)
+
+   
    ![image](https://github.com/user-attachments/assets/770844e3-1eb6-46c3-8997-be1331fae2fa)
+
+   
    ![image](https://github.com/user-attachments/assets/8e99ba25-72cd-40c9-8ec5-a18ff0eb65ff)
 
-3. Dentro de nuestro archivo def.cpp, el uso de while fue necesario para las funciones de getValidInteger, saveScore y loadScoreboard
+
+5. Dentro de nuestro archivo def.cpp, el uso de while fue necesario para las funciones de getValidInteger, saveScore y loadScoreboard
+
+
 ![image](https://github.com/user-attachments/assets/a36c0e51-ead5-47ff-88ac-fc2d56c295aa)
 
+
 En el caso de loadScoreboard nos ayudaba para insertar en un struct todos los nombres y puntos de los jugadores que habrian participado con anterioridad en el juego y asi mostrarlo en el menu de puntuaciones.
+
+
 ![image](https://github.com/user-attachments/assets/cad687b9-baa1-413f-a4df-df4bc565f842)
 
+
 Y en el caso de saveScore, nos ayudaba a cargar la informacion que se encontraba en nuestro archivo txt para poder ser modificada con los puntos del nuevo ganador.
+
+
 ![image](https://github.com/user-attachments/assets/a52fe939-7fee-4286-beb6-8b641a72922b)
 
 
 
 # Manejo de archivos
-Para este punto constamos de 3 archivos muy importantes, como primer archivo, nuestro main.cpp, se encuentra en la raiz principal del proyecto y es el encargado de ejecutar todas las funciones del codigo y mostrar los mensajes principales del juego.
+Para este punto constamos de 3 archivos muy importantes, como primer archivo, esta el main.cpp, se encuentra en la raiz principal del proyecto y es el encargado de ejecutar todas las funciones del codigo y mostrar los mensajes principales del juego.
+
 ![image](https://github.com/user-attachments/assets/13436c4e-a617-4f22-a463-2d9802f5f2b4)
 
 Ejemplo de codigo que contiene main.cpp: 
+
+
 ![image](https://github.com/user-attachments/assets/7ff13f42-6039-432d-998e-3defe44a3262)
+
+
 ![image](https://github.com/user-attachments/assets/13babcdb-d89b-4025-9c48-b12a96c3a513)
+
+
 ![image](https://github.com/user-attachments/assets/b51d2f08-e423-46d6-a3a1-817ccdf4d518)
 
 
 Por otra parte, dentro de nuestra carpeta src, contenemos dos archivos que permiten que la lógica del juego funcione correctamente, uno de ellos es el archivo header.h que funciona como cabecera del codigo y en donde se incorporan todas las librerias, variables globales y declaracion de funciones.
 
 Imagen de la carpeta src con sus archivos correspondientes:
+
+
 ![image](https://github.com/user-attachments/assets/a171202c-3b7c-41a4-ab14-869940622ca3)
+
+En uno de los casos mas importantes realizamos el uso de el manejo de archivos en la tabla de puntuaciones de los jugadores, 
 
 
 Ejemplo de código que contiene header.h
+
+
 ![image](https://github.com/user-attachments/assets/ff798449-f06e-48ac-a34b-4d6016653b29)
 
 
 Y por ultimo tenemos nuestro archivo def.cpp, es el encargado de contener todas las funciones del código, éste si se encarga de la lógica del juego, dentro de él podemos encontrar funciones como: loadScoreboard, saveScore, getValidInteger, removeCards, etc.
 
 Ejemplo de código que contiene def.cpp:
+
+
 ![image](https://github.com/user-attachments/assets/625338a4-7a73-40cf-af09-63d2d71e7c9e)
+
+
 ![image](https://github.com/user-attachments/assets/0e4db46e-60d8-48ae-83b1-17c8f950a0f2)
+
+
 ![image](https://github.com/user-attachments/assets/b40c1994-4f21-466a-8ea0-5df37c874d53)
+
+
 ![image](https://github.com/user-attachments/assets/45e2a03a-60d8-46ed-a4dd-20eaa020d3f2)
 
 
 
+# 📚 Librarias Usadas:
 
 
-
-
-
-
-
-
-
-# 📚 Libraries Used:
 ![image](https://github.com/user-attachments/assets/f96f6eb6-9c28-461a-b0fd-4b832b269829)
 
 
@@ -279,7 +316,7 @@ Ejemplo de código que contiene def.cpp:
 
 ## **Nombre de el equipo**
 - project alfa buena maravilla onda dinamita lobo
-### **Team members' names:**
+### **Nombre de los integrantes del grupo:**
 1. **Nombre** Ricardo Ernesto Iglesias Flores 
    **Carnet:** 00000725
 
