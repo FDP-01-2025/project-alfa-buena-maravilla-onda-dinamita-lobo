@@ -125,10 +125,121 @@ asi como para conficiones en ciclos for en la misma funcion, al igual que en fun
 ![image](https://github.com/user-attachments/assets/cab4b960-b7a9-4156-a420-6ee76d180943)
 
 
-# Uso de For 
+# Uso de For
+El uso de ciclos for fue parte importante del proyecto, ya que gracias a esto teniamos la posibilidad de:
+
+1.Repartir las cartas segun la cantidad de jugadores.
+![image](https://github.com/user-attachments/assets/88410843-ea8d-40cd-903c-ed2f0d457eb5)
+
+
+2.Mostrar nuestras cartas de forma horizontal e imprimir dichas cartas.
+![image](https://github.com/user-attachments/assets/83620eda-3a5c-496a-8e52-ff0252e6566c)
+
+
+3.Comprobar las cartas otorgadas a cada jugador.
+![image](https://github.com/user-attachments/assets/afb869e9-8e89-42bf-8421-ad09cc46ab63)
+
+4.Comprobar las cartas a eliminar y evitar que nuestro ASCII se deforme.
+![image](https://github.com/user-attachments/assets/9c03bfe1-e5da-4c71-8625-0156c7907e64)
+
+5.Para actualizar y guardar el numero de victorias o puntos de cada jugador registrado.
+![image](https://github.com/user-attachments/assets/bc8c311e-7d26-47e1-9d1d-bbe66f75139c)
+
+Todo lo anterior se muestra dentro de nuestro archivo def.cpp, ubicado en la carpeta src. Ahora veremos las implementaciones en nuestro archivo main.cpp, ubicado en la raiz del proyecto.
+
+6.Por medio de un for solicitamos los nombre de los jugadores, ya que con esto se guardará en su arreglo correspondiente.
+![image](https://github.com/user-attachments/assets/924dc69d-5dd9-48ce-b97d-768c4cdbcc1f)
+
+7.El for tambien nos permitió llevar el conteo de jugadores restantes con cartas y de ésta forma determinar un ganador.
+![image](https://github.com/user-attachments/assets/3ab31f1c-b24b-4f4a-8424-cdbf10d1c0ee)
+
+8.Otra de sus implementaciones fue verificar las cartas disponibles de un jugador no penalizado.
+![image](https://github.com/user-attachments/assets/2d76bf50-a8b1-4074-9ec8-b8a8bcb01f6f)
+
+9.Por último, su implementación nos ayudo a mostrar la lista de jugadores disponibles y con ello determinar quien deseaba acusar al jugador en turno.
+![image](https://github.com/user-attachments/assets/418192d4-d278-4697-84c4-9a93680d1229)
+
+
+
+
 # Uso de los swich
+El switch es una estructura de control que se implementó durante el proyecto una vez, pero que forma parte importante de este al momento de estar en su menú principal. Su utilidad es dividir en 3 opciones nuestro menú de juego (1.Jugar, 2.Tabla de puntuaciones, 3.Salir).
+
+1.En el primer caso tenemos la opcion de juego, al seleccionarle este ejecuta todo el codigo principal que permite la jugabilidad del proyecto.
+![image](https://github.com/user-attachments/assets/a97dbabb-abbf-4a5c-90d4-f57df82b86b0)
+
+2.En el segundo caso, el switch nos ayudó a cargar la tabla de puntuaciones de nuestro juego.
+![image](https://github.com/user-attachments/assets/a65305c4-3301-4afb-8807-fe4e4dea2cc2)
+
+3.Y por último, en el tercer caso, éste muesra un mensaje de agradecimiento al salir del juego.
+![image](https://github.com/user-attachments/assets/ea654da9-ab1b-4102-8780-f992c4cc748f)
+
+
+
+
 # Uso de while y do while
+El uso de estos bucles nos sirvió en gran medida para la validacion de respuestas y encerrar en un rango de opciones al jugardor.
+
+1.Primeramente el uso de do while, éste nos permitio hacer la ejecución del juego tantas veces el jugador lo desee, siempre y cuando este no ejecute la opcion 3 (salir).
+![image](https://github.com/user-attachments/assets/f2fbde5d-7881-40bc-ba04-f4288cd06419)
+![image](https://github.com/user-attachments/assets/a13b3efc-783b-4788-9fd4-63b5cae33f32)
+
+2. El uso de los while, como se comentaba antes, fue necesario para la validacion de respuestas y permitir la seleccion de opciones que nosotros ofrecemos al jugador.
+   ![image](https://github.com/user-attachments/assets/7220786b-f45c-4241-add0-ab66fd3d201a)
+   ![image](https://github.com/user-attachments/assets/459ed496-5482-4734-a1ea-a3f3ca1a88d9)
+   ![image](https://github.com/user-attachments/assets/1cfe0e00-f14a-46d4-8ac5-5a53001527b9)
+   ![image](https://github.com/user-attachments/assets/6fd06c73-ea19-4a94-a4f2-f59353e4558e)
+   ![image](https://github.com/user-attachments/assets/770844e3-1eb6-46c3-8997-be1331fae2fa)
+   ![image](https://github.com/user-attachments/assets/8e99ba25-72cd-40c9-8ec5-a18ff0eb65ff)
+
+3. Dentro de nuestro archivo def.cpp, el uso de while fue necesario para las funciones de getValidInteger, saveScore y loadScoreboard
+![image](https://github.com/user-attachments/assets/a36c0e51-ead5-47ff-88ac-fc2d56c295aa)
+
+En el caso de loadScoreboard nos ayudaba para insertar en un struct todos los nombres y puntos de los jugadores que habrian participado con anterioridad en el juego y asi mostrarlo en el menu de puntuaciones.
+![image](https://github.com/user-attachments/assets/cad687b9-baa1-413f-a4df-df4bc565f842)
+
+Y en el caso de saveScore, nos ayudaba a cargar la informacion que se encontraba en nuestro archivo txt para poder ser modificada con los puntos del nuevo ganador.
+![image](https://github.com/user-attachments/assets/a52fe939-7fee-4286-beb6-8b641a72922b)
+
+
+
 # Manejo de archivos
+Para este punto constamos de 3 archivos muy importantes, como primer archivo, nuestro main.cpp, se encuentra en la raiz principal del proyecto y es el encargado de ejecutar todas las funciones del codigo y mostrar los mensajes principales del juego.
+![image](https://github.com/user-attachments/assets/13436c4e-a617-4f22-a463-2d9802f5f2b4)
+
+Ejemplo de codigo que contiene main.cpp: 
+![image](https://github.com/user-attachments/assets/7ff13f42-6039-432d-998e-3defe44a3262)
+![image](https://github.com/user-attachments/assets/13babcdb-d89b-4025-9c48-b12a96c3a513)
+![image](https://github.com/user-attachments/assets/b51d2f08-e423-46d6-a3a1-817ccdf4d518)
+
+
+Por otra parte, dentro de nuestra carpeta src, contenemos dos archivos que permiten que la lógica del juego funcione correctamente, uno de ellos es el archivo header.h que funciona como cabecera del codigo y en donde se incorporan todas las librerias, variables globales y declaracion de funciones.
+
+Imagen de la carpeta src con sus archivos correspondientes:
+![image](https://github.com/user-attachments/assets/a171202c-3b7c-41a4-ab14-869940622ca3)
+
+
+Ejemplo de código que contiene header.h
+![image](https://github.com/user-attachments/assets/ff798449-f06e-48ac-a34b-4d6016653b29)
+
+
+Y por ultimo tenemos nuestro archivo def.cpp, es el encargado de contener todas las funciones del código, éste si se encarga de la lógica del juego, dentro de él podemos encontrar funciones como: loadScoreboard, saveScore, getValidInteger, removeCards, etc.
+
+Ejemplo de código que contiene def.cpp:
+![image](https://github.com/user-attachments/assets/625338a4-7a73-40cf-af09-63d2d71e7c9e)
+![image](https://github.com/user-attachments/assets/0e4db46e-60d8-48ae-83b1-17c8f950a0f2)
+![image](https://github.com/user-attachments/assets/b40c1994-4f21-466a-8ea0-5df37c874d53)
+![image](https://github.com/user-attachments/assets/45e2a03a-60d8-46ed-a4dd-20eaa020d3f2)
+
+
+
+
+
+
+
+
+
+
 
 
 # 📚 Libraries Used:
