@@ -1,14 +1,14 @@
 //Desarrollamos "definiciones.cpp", para definir las funciones declaradas en "header.h", con ello buscamos hacer el codigo mas optimizado."
-                                    //LLAMAMOS A DONDE DECLARAMOS LAS FUNCIONES.
+//LLAMAMOS A DONDE DECLARAMOS LAS FUNCIONES.
 #include "header.h"
-                                    //DECLARAMOS Y DEFINIMOS LAS FUNCIONES.
-                        
+//DECLARAMOS Y DEFINIMOS LAS FUNCIONES.
+
 //Declaramos el nombre de las cartas.
 string mazo[TOTAL_CARTAS] = {
-    "Rey", "Rey", "Rey", "Rey",
-    "Reina", "Reina", "Reina", "Reina",
-    "As", "As", "As", "As",
-    "Jocker", "Jocker", "Jocker", "Jocker"}; // Se balancea el mazo con 4 Jockers
+    "Rey", "Rey", "Rey", "Rey", "Rey","Rey", // 6 Reyes
+    "Reina", "Reina", "Reina", "Reina", "Reina","Reina", // 6 Reinas
+    "As", "As", "As", "As", "As","As", // 6 Ases
+    "Jocker", "Jocker"}; // 2 Jockers (para un total de 20 cartas)
 
 // función para obtener el arte ASCII como un vector de strings (una string por línea).
 vector<string> obtenerCartaASCII(const string &carta)
@@ -35,7 +35,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("│   ♠   │");
         ascii_art.push_back("│ / _ \\ │");
         ascii_art.push_back("│ ( o ) │");
-        ascii_art.push_back("│  \\~/  │");
+        ascii_art.push_back("│   \\~/ │");
         ascii_art.push_back("│     Q │");
         ascii_art.push_back("└───────┘");
 
@@ -59,7 +59,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("│   ♣   │");
         ascii_art.push_back("│   ^   │");
         ascii_art.push_back("│ |o_o| │");
-        ascii_art.push_back("│  \\_/  │");
+        ascii_art.push_back("│   \\_/ │");
         ascii_art.push_back("│   JKR │");
         ascii_art.push_back("└───────┘");
 
@@ -220,3 +220,25 @@ void guardar_puntuacion(const string& nombre_jugador) {
     }
 }
 
+// Función de ayuda para obtener entrada entera válida
+int obtenerEnteroValido(const string& mensaje) {
+    int valor;
+    while (true) {
+        cout << mensaje;
+        cin >> valor;
+
+        if (cin.fail()) { // Si la entrada no fue un número
+            system("cls");
+            cout << "Entrada inválida. Por favor, ingrese un número.\n";
+            cin.clear(); // Limpiar el estado de error de cin
+            // Ignorar el resto de la línea actual para evitar bucles infinitos
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            
+        } else {
+            // Limpiar el buffer de entrada para la siguiente lectura (por si el usuario ingresó más de lo necesario)
+            system("cls");
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return valor;
+        }
+    }
+}
