@@ -59,7 +59,7 @@ vector<string> getCardASCII(const string &card)
         ascii_art.push_back("│   ♣   │");
         ascii_art.push_back("│   ^   │");
         ascii_art.push_back("│ |o_o| │");
-        ascii_art.push_back("│   \\_/ │");
+        ascii_art.push_back("│  \\_/  │");
         ascii_art.push_back("│   JKR │");
         ascii_art.push_back("└───────┘");
 
