@@ -259,10 +259,12 @@ Imagen de la carpeta src con sus archivos correspondientes:
 
 ![image](https://github.com/user-attachments/assets/a171202c-3b7c-41a4-ab14-869940622ca3)
 
-En uno de los casos mas importantes realizamos el uso de el manejo de archivos en la tabla de puntuaciones de los jugadores, 
+En uno de los casos mas importantes realizamos el uso de el manejo de archivos en la tabla de puntuaciones de los jugadores, el juego sera consiente de los jugadores y con ellos las partidas respectivas gandas, con eso buscamos crear un archivo de la siguiente manera:
+
+![image](https://github.com/user-attachments/assets/fd75f045-7821-4587-86eb-8819ab14be3d)
 
 
-Ejemplo de código que contiene header.h
+Continuando tenemos el ejemplo de código que contiene header.h:
 
 
 ![image](https://github.com/user-attachments/assets/ff798449-f06e-48ac-a34b-4d6016653b29)
