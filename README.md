@@ -315,6 +315,55 @@ Ejemplo de código que contiene def.cpp:
   -using namespace std: Permite escribir cout en lugar de std::cout, etc.
 
 # Imágenes o mockups del juego
+Para poder presentar imagenes de nuestro juego haremos un estilo de pasos, en los que se mostraran
+
+1.Primero presentamos al usuario un menu en el que se podra mover para poder saber si jugar, ver puntajes o salir
+
+![image](https://github.com/user-attachments/assets/3c3a65c9-638c-47f2-9638-7716d7b4b615)
+
+2. Para ver la tabla de puntuaciones el jugador debera haber jugado previamente de los contrario no podra, pero si elije jugar se le dara una pequeña decripcion de "La mesa de los mentirosos"
+
+   ![image](https://github.com/user-attachments/assets/6d040efa-4545-4459-8ed2-ff6b668a16e8)
+
+3.Una vez se presione enter, el jugador devera ingresar cuantos jugadores estaran y respectivamente el user o nombre que se pondra cada uno.
+
+
+![image](https://github.com/user-attachments/assets/51b7b268-cfcc-48ca-a719-5ac3ada75323)
+
+
+![image](https://github.com/user-attachments/assets/b4e14c46-45cb-46d2-825a-02b4fe565a8e)
+
+
+4. Una vez ingresados los nombres, empezara el juegos se le daran a los jugadores turno por turno sus cartas y se les preguntara progresivamente que carta se reclamara, que carta tiraran, cuantas tiraran y si desean declarar a un mentiroso o no
+
+
+![image](https://github.com/user-attachments/assets/6a09ab9a-ea6f-4657-bc9f-bd7939aef0f2)
+
+
+![image](https://github.com/user-attachments/assets/72901ad9-2dcd-458d-b51c-b5e388ff12f7)
+
+
+![image](https://github.com/user-attachments/assets/49115483-77db-4f7c-b53d-a3f731d006ca)
+
+
+![image](https://github.com/user-attachments/assets/e41e8a59-a105-403a-aaba-ebdb495ee4f3)
+
+
+5. si el jugador no declara un mentiroso seguiran los turnos asi sucesivamente hasta que un jugador tire todas sus cartas y gane.
+
+
+![image](https://github.com/user-attachments/assets/12c5a221-0213-46e7-b55f-30c4c56824c8)
+
+6. con eso se guardara el ganador y se podra ver la tabla de puntuaciones
+
+
+![image](https://github.com/user-attachments/assets/fcd476c4-2278-4c61-af53-406e3779d6d6)
+
+7.Pero si en la partida se quiere declarar un mentiroso entonces se dara un menu donde elijiran quien declara a quien y se corraborara si eso para, si es asi perdera turno.
+
+
+![image](https://github.com/user-attachments/assets/3aca6bd7-b5c3-495f-95a8-8cbe36519d0d)
+
 
 ## **Nombre de el equipo**
 - project alfa buena maravilla onda dinamita lobo
