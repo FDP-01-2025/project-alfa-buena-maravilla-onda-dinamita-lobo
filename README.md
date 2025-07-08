@@ -197,7 +197,7 @@ El uso de estos bucles nos sirvió en gran medida para la validacion de respuest
 ![image](https://github.com/user-attachments/assets/a13b3efc-783b-4788-9fd4-63b5cae33f32)
 
 2. El uso de los while, como se comentaba antes, fue necesario para la validacion de respuestas y permitir la seleccion de opciones que nosotros ofrecemos al jugador.
-3. 
+   
    ![image](https://github.com/user-attachments/assets/7220786b-f45c-4241-add0-ab66fd3d201a)
 
    
