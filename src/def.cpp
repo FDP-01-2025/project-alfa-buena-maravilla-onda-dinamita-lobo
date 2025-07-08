@@ -4,19 +4,19 @@
 //DECLARAMOS Y DEFINIMOS LAS FUNCIONES.
 
 //Declaramos el nombre de las cartas.
-string mazo[TOTAL_CARTAS] = {
+string deck[TOTAL_CARDS] = {
     "Rey", "Rey", "Rey", "Rey", "Rey","Rey", // 6 Reyes
     "Reina", "Reina", "Reina", "Reina", "Reina","Reina", // 6 Reinas
     "As", "As", "As", "As", "As","As", // 6 Ases
     "Jocker", "Jocker"}; // 2 Jockers (para un total de 20 cartas)
 
 // función para obtener el arte ASCII como un vector de strings (una string por línea).
-vector<string> obtenerCartaASCII(const string &carta)
+vector<string> getCardASCII(const string &card)
 {
     // Se utiliza un vector de strings para almacenar cada línea de la representación ASCII de la carta.
     vector<string> ascii_art;
 
-    if (carta == "Rey")
+    if (card == "Rey")
     {
         ascii_art.push_back("┌───────┐"); // Se agrega la primera línea del arte ASCII.
         ascii_art.push_back("│ K     │"); // Se agrega la segunda línea.
@@ -28,7 +28,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("└───────┘");
 
     }
-    else if (carta == "Reina")
+    else if (card == "Reina")
     {
         ascii_art.push_back("┌───────┐");
         ascii_art.push_back("│ Q     │");
@@ -40,7 +40,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("└───────┘");
 
     }
-    else if (carta == "As")
+    else if (card == "As")
     {
         ascii_art.push_back("┌───────┐");
         ascii_art.push_back("│ A     │");
@@ -52,7 +52,7 @@ vector<string> obtenerCartaASCII(const string &carta)
         ascii_art.push_back("└───────┘");
 
     }
-    else if (carta == "Jocker")
+    else if (card == "Jocker")
     {
         ascii_art.push_back("┌───────┐");
         ascii_art.push_back("│ JKR   │");
@@ -68,52 +68,52 @@ vector<string> obtenerCartaASCII(const string &carta)
 }
 
 // Ahora realizamos una funcion para poder hacer el barajeo
-void barajarMazo(string m[], int n)
+void shuffleDeck(string deck[], int n)
 {
     // Se utiliza un generador de números aleatorios más moderno y se mezcla el mazo.
     random_device rd;
     mt19937 g(rd());
-    shuffle(m, m + n, g);
+    shuffle(deck, deck + n, g);
 }
 
 // repartimos en una funcion las cartas a los jugadores
-void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[])
+void dealCards(string hands[MAX_PLAYERS][CARDS_PER_PLAYER], int numPlayers, string deck[])
 {
     int pos = 0;
-    for (int i = 0; i < numJugadores; i++)
+    for (int i = 0; i < numPlayers; i++)
     {
-        for (int j = 0; j < CARTAS_POR_JUGADOR; j++)
+        for (int j = 0; j < CARDS_PER_PLAYER; j++)
         {
-            manos[i][j] = m[pos++];
+            hands[i][j] = deck[pos++];
         }
     }
 }
 
 // Se modifica la función para mostrar las cartas horizontalmente.
-void mostrarMano(string mano[], int tam)
+void showHand(string hand[], int size)
 {
     // Se obtiene el arte ASCII de todas las cartas en la mano y se almacena en un vector de vectores de strings.
-    vector<vector<string>> cartas_ascii;
-    for (int i = 0; i < tam; i++)
+    vector<vector<string>> cards_ascii;
+    for (int i = 0; i < size; i++)
     {
-        if (mano[i] != "")
+        if (hand[i] != "")
         {
-            cartas_ascii.push_back(obtenerCartaASCII(mano[i]));
+            cards_ascii.push_back(getCardASCII(hand[i]));
         }
     }
 
     // Se asume que todas las cartas tienen el mismo número de líneas para la representación ASCII.
-    if (!cartas_ascii.empty())
+    if (!cards_ascii.empty())
     {
-        int num_lineas_carta = cartas_ascii[0].size();
+        int num_lineas_carta = cards_ascii[0].size();
         // Se itera a través de cada línea del arte ASCII de las cartas.
         for (int i = 0; i < num_lineas_carta; i++)
         {
             // Se itera a través de cada carta en la mano.
-            for (const auto &carta_art : cartas_ascii)
+            for (const auto &card_art : cards_ascii)
             {
                 // Se imprime la línea actual de la carta seguida de un espacio.
-                cout << carta_art[i] << " ";
+                cout << card_art[i] << " ";
             }
             // Se imprime un salto de línea después de imprimir la misma línea de todas las cartas.
             cout << endl;
@@ -122,98 +122,98 @@ void mostrarMano(string mano[], int tam)
     cout << endl;
 }
 // hacemor una funcion para comprobar las cartas que tendra cada jugador
-int contarCarta(string mano[], int tam, string carta)
+int countCard(string hand[], int size, string card)
 {
-    int cont = 0;
-    for (int i = 0; i < tam; i++)
+    int count = 0;
+    for (int i = 0; i < size; i++)
     {
-        if (mano[i] == carta)
-            cont++;
+        if (hand[i] == card)
+            count++;
     }
-    return cont;
+    return count;
 }
 
 // cuando un jugador tire una carta, hacemos una funcion para que este elimine dicha carta
-void eliminarCartas(string mano[], int tam, string carta, int cantidad)
+void removeCards(string hand[], int size, string card, int quantity)
 {
     // Usamos un índice 'write_idx' para mantener un seguimiento de dónde colocar la próxima carta no eliminada.
     int write_idx = 0;
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < size; i++)
     {
         // Si la carta actual NO es la que queremos eliminar O ya hemos eliminado la cantidad deseada,
         // entonces la mantenemos en la mano.
-        if (mano[i] != carta || cantidad <= 0)
+        if (hand[i] != card || quantity <= 0)
         {
-            mano[write_idx++] = mano[i];
+            hand[write_idx++] = hand[i];
         }
         else
         {
             // Si es la carta a eliminar y todavía necesitamos eliminar más,
             // simplemente la "saltamos" (no la copiamos a write_idx) y decrementamos la cantidad.
-            cantidad--;
+            quantity--;
         }
     }
 
     // Rellenar el resto de la mano con cadenas vacías para los espacios que quedaron libres.
-    for (int i = write_idx; i < tam; i++)
+    for (int i = write_idx; i < size; i++)
     {
-        mano[i] = "";
+        hand[i] = "";
     }
 }
 
 //Estructura y funcion de tabla de puntuaciones
-struct puntos_jugadores {
+struct player_scores {
     string nombre;
     int victorias;
 };
 
-void cargar_tabla_de_puntos() {
-    ifstream tabla_puntos("puntuaciones.txt");
+void loadScoreboard() {
+    ifstream scores_file("puntuaciones.txt");
     
-    if (tabla_puntos.is_open()) {
+    if (scores_file.is_open()) {
         cout << "\n--- Tabla de Puntuaciones ---\n";
         cout << "Jugador          Victorias \n";
         cout << "---------------------------\n";
         
-        puntos_jugadores jugador;
-        while (tabla_puntos >> jugador.nombre >> jugador.victorias) {
-            cout << jugador.nombre << "                " << jugador.victorias << endl;
+        player_scores player;
+        while (scores_file >> player.nombre >> player.victorias) {
+            cout << player.nombre << "                " << player.victorias << endl;
         }
-        tabla_puntos.close();
+        scores_file.close();
     } else {
         cout << "No se pudo cargar la tabla de puntuaciones. ¡Juega para empezar a registrar!\n";
     }
 }
 
-void guardar_puntuacion(const string& nombre_jugador) {
+void saveScore(const string& playerName) {
     // Cargar puntuaciones existentes
-    vector<puntos_jugadores> tabla;
+    vector<player_scores> scores_table;
     ifstream infile("puntuaciones.txt");
     if (infile.is_open()) {
-        puntos_jugadores p;
+        player_scores p;
         while (infile >> p.nombre >> p.victorias) {
-            tabla.push_back(p);
+            scores_table.push_back(p);
         }
         infile.close();
     }
 
     // Actualizar puntuación del jugador actual
-    bool encontrado = false;
-    for (auto& p : tabla) {
-        if (p.nombre == nombre_jugador) {
+    bool found = false;
+    for (auto& p : scores_table) {
+        if (p.nombre == playerName) {
             p.victorias++;
-            encontrado = true;
+            found = true;
             break;
         }
     }
-    if (!encontrado) {
-        tabla.push_back({nombre_jugador, 1});
+    if (!found) {
+        scores_table.push_back({playerName, 1});
     }
 
     // Guardar todas las puntuaciones de nuevo
     ofstream outfile("puntuaciones.txt");
     if (outfile.is_open()) {
-        for (const auto& p : tabla) {
+        for (const auto& p : scores_table) {
             outfile << p.nombre << " " << p.victorias << endl;
         }
         outfile.close();
@@ -223,11 +223,11 @@ void guardar_puntuacion(const string& nombre_jugador) {
 }
 
 // Función de ayuda para obtener entrada entera válida
-int obtenerEnteroValido(const string& mensaje) {
-    int valor;
+int getValidInteger(const string& message) {
+    int value;
     while (true) {
-        cout << mensaje;
-        cin >> valor;
+        cout << message;
+        cin >> value;
 
         if (cin.fail()) { // Si la entrada no fue un número
             system("cls");
@@ -240,7 +240,7 @@ int obtenerEnteroValido(const string& mensaje) {
             // Limpiar el buffer de entrada para la siguiente lectura (por si el usuario ingresó más de lo necesario)
             system("cls");
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            return valor;
+            return value;
         }
     }
 }

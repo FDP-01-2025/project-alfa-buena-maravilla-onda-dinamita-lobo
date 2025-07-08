@@ -19,27 +19,27 @@ using namespace std;
 
 //DECLARACION DE CONSTANTES
 //Determinamos unas constantes, para tener el numeros de cartas que usaremos en el juego.
-const int MAX_JUGADORES = 4;        // Maximo de jugadores por partida.
-const int CARTAS_POR_JUGADOR = 5;   // Maximo de cartas por cada jugador.
-const int TOTAL_CARTAS = 20;        // Maximo de cartas para la partida (4 jugadores * 5 cartas = 20).
+const int MAX_PLAYERS = 4;        // Maximo de jugadores por partida.
+const int CARDS_PER_PLAYER = 5;   // Maximo de cartas por cada jugador.
+const int TOTAL_CARDS = 20;       // Maximo de cartas para la partida (4 jugadores * 5 cartas = 20).
 //FIN DE LAS CONSTANTES.
 
 //DECLARACION DE LAS FUNCIONES.
-extern string mazo[TOTAL_CARTAS]; // Declaramos el mazo como extern
+extern string deck[TOTAL_CARDS]; // Declaramos el mazo como extern
 
-vector<string> obtenerCartaASCII(const string& carta); // Funcion utilizada para el mostreo de cartas
-void barajarMazo(string m[], int n); // Funcion para desarrollar las diferentes cartas para el mazo
-void repartirCartas(string manos[MAX_JUGADORES][CARTAS_POR_JUGADOR], int numJugadores, string m[]); // Funcion para repartir a la zar las cartas
-void mostrarMano(string mano[], int tam); // Funcion que mostrara las mano a los usuarios
-int contarCarta(string mano[], int tam, string carta); // Funcion que contara cuantas cartas tendra cada jugador
-void eliminarCartas(string mano[], int tam, string carta, int cantidad); // Funcion que eliminara las cartas segun los turnos avancen.
+vector<string> getCardASCII(const string& card); // Funcion utilizada para el mostreo de cartas
+void shuffleDeck(string deck[], int n); // Funcion para desarrollar las diferentes cartas para el mazo
+void dealCards(string hands[MAX_PLAYERS][CARDS_PER_PLAYER], int numPlayers, string deck[]); // Funcion para repartir a la zar las cartas
+void showHand(string hand[], int size); // Funcion que mostrara las mano a los usuarios
+int countCard(string hand[], int size, string card); // Funcion que contara cuantas cartas tendra cada jugador
+void removeCards(string hand[], int size, string card, int quantity); // Funcion que eliminara las cartas segun los turnos avancen.
 
 
-void cargar_tabla_de_puntos();
-void guardar_puntuacion(const string& nombre_jugador);
+void loadScoreboard();
+void saveScore(const string& playerName);
 
 // Nueva función de ayuda para la validación de entrada
-int obtenerEnteroValido(const string& mensaje);
+int getValidInteger(const string& message);
 
 //FIN DE LAS FUNCIONES.
 #endif
