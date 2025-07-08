@@ -129,34 +129,43 @@ asi como para conficiones en ciclos for en la misma funcion, al igual que en fun
 El uso de ciclos for fue parte importante del proyecto, ya que gracias a esto teniamos la posibilidad de:
 
 1.Repartir las cartas segun la cantidad de jugadores.
+
 ![image](https://github.com/user-attachments/assets/88410843-ea8d-40cd-903c-ed2f0d457eb5)
 
 
 2.Mostrar nuestras cartas de forma horizontal e imprimir dichas cartas.
+
 ![image](https://github.com/user-attachments/assets/83620eda-3a5c-496a-8e52-ff0252e6566c)
 
 
 3.Comprobar las cartas otorgadas a cada jugador.
+
 ![image](https://github.com/user-attachments/assets/afb869e9-8e89-42bf-8421-ad09cc46ab63)
 
 4.Comprobar las cartas a eliminar y evitar que nuestro ASCII se deforme.
+
 ![image](https://github.com/user-attachments/assets/9c03bfe1-e5da-4c71-8625-0156c7907e64)
 
 5.Para actualizar y guardar el numero de victorias o puntos de cada jugador registrado.
+
 ![image](https://github.com/user-attachments/assets/bc8c311e-7d26-47e1-9d1d-bbe66f75139c)
 
 Todo lo anterior se muestra dentro de nuestro archivo def.cpp, ubicado en la carpeta src. Ahora veremos las implementaciones en nuestro archivo main.cpp, ubicado en la raiz del proyecto.
 
 6.Por medio de un for solicitamos los nombre de los jugadores, ya que con esto se guardará en su arreglo correspondiente.
+
 ![image](https://github.com/user-attachments/assets/924dc69d-5dd9-48ce-b97d-768c4cdbcc1f)
 
 7.El for tambien nos permitió llevar el conteo de jugadores restantes con cartas y de ésta forma determinar un ganador.
+
 ![image](https://github.com/user-attachments/assets/3ab31f1c-b24b-4f4a-8424-cdbf10d1c0ee)
 
 8.Otra de sus implementaciones fue verificar las cartas disponibles de un jugador no penalizado.
+
 ![image](https://github.com/user-attachments/assets/2d76bf50-a8b1-4074-9ec8-b8a8bcb01f6f)
 
 9.Por último, su implementación nos ayudo a mostrar la lista de jugadores disponibles y con ello determinar quien deseaba acusar al jugador en turno.
+
 ![image](https://github.com/user-attachments/assets/418192d4-d278-4697-84c4-9a93680d1229)
 
 
