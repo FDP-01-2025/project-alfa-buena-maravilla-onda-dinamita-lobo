@@ -364,6 +364,11 @@ Para poder presentar imagenes de nuestro juego haremos un estilo de pasos, en lo
 
 ![image](https://github.com/user-attachments/assets/3aca6bd7-b5c3-495f-95a8-8cbe36519d0d)
 
+# Flujograma
+
+
+![Mesa_mentirosos drawio](https://github.com/user-attachments/assets/1936e4fd-e38a-478b-b606-c1607f78e1cc)
+
 
 ## **Nombre de el equipo**
 - project alfa buena maravilla onda dinamita lobo
